@@ -4,7 +4,7 @@ body,html{
 }
 
 body{
-    background-image: url("../src/authBG.jpg");
+    background-image: url("../assets/authBG.jpg");
     background-size: cover;
     background-attachment: fixed;
 
