@@ -1,0 +1,156 @@
+:root{
+    --mainColor: #2C4C6E
+
+}
+
+
+body,html{
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    background-image: url("../assets/homeBG.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    position: relative;
+    
+}
+
+.authBG{
+
+    border-radius: 15px;
+background: rgba(217, 217, 217, 0.67);
+box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+backdrop-filter: blur(13px);
+height: auto;
+
+width: 100%;
+max-width: 500px;
+
+padding: 40px;
+box-sizing: border-box;
+align-items: flex-start;
+
+}
+
+.loginText{
+    padding-bottom: 3px;
+    margin-bottom: 0;
+    padding-left: 6px;
+}
+
+.loginField{
+border-radius: 15px;
+background: rgba(217, 217, 217, 0.67);
+box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.25);
+width: 100%;
+height: 40px;
+border: none;
+box-sizing: border-box;
+}
+
+.loginItem{
+    margin-bottom: 25px;
+}
+
+.loginField::placeholder{
+    padding-left: 5px;
+}
+
+.authButtonL{
+    border-radius: 15px;
+background: #2C4C6E;
+box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.25);
+width: 100%;
+height: 40px;
+border: none;
+box-sizing: border-box;
+font-family: 'Times New Roman', Times, serif;
+color: rgba(217, 217, 217, 0.67);;
+font-size: medium;
+margin-bottom: 5px;
+}
+.authButtonS{
+    border-radius: 15px;
+background: #2C4C6E;
+box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.25);
+width: 100%;
+height: 30px;
+border: none;
+box-sizing: border-box;
+font-family: 'Times New Roman', Times, serif;
+color: rgba(217, 217, 217, 0.67);;
+font-size: medium;
+margin-bottom: 5px;
+}
+
+.board{
+    background-color: var(--mainColor);
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.createBoard{
+    background: none !important;
+    backdrop-filter: blur(13px);
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    border-color: var(--mainColor);
+    background-size: 5px;
+    border-style: dashed;
+    margin-left: 5px !important;
+    border-width: 2.5px;
+    color: var(--mainColor);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+}
+
+.board h3{
+    margin-left: 5px;
+    margin-top: 7px;
+}
+
+.boardsList{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    border-radius: 15px;
+background: rgba(217, 217, 217, 0.67);
+box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+backdrop-filter: blur(13px);
+height: auto;
+width: 100%;
+max-width: 1400px !important;
+align-items: center;
+align-content: center;
+padding: 40px;
+box-sizing: border-box;
+align-items: flex-start;
+gap: 15px;
+}
+
+
+.perms{
+    border-radius: 15px;
+    background: rgba(217, 217, 217, 0.67);
+    box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(13px); 
+    width: fit-content;
+    padding: 3px;
+    align-self: flex-end;
+    margin-bottom: 5px;
+    margin-left: 3px;
+}
+
+.perms h5{
+    margin: 0 !important;
+    font-size: x-small;
+}
