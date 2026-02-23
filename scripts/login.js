@@ -6,6 +6,7 @@ async function login() {
 
     const response = await fetch(`${apiLink}/auth/login`, {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
@@ -24,7 +25,6 @@ async function login() {
 
     if (data.ok == true){
         console.log("User logged in")
-        sessionStorage.setItem("frames_token", data.token)
 
         return true;
     } else {
