@@ -1,3 +1,72 @@
+function createBoard(boardTitle,perm,id){
+    const boardDiv = document.createElement("div")
+    boardDiv.className = "board"
+
+    const title = document.createElement("h3")
+    title.textContent = boardTitle
+    boardDiv.appendChild(title)
+
+
+    const permsDiv = document.createElement("div")
+    permsDiv.className = "perms"
+
+    const permText = document.createElement("h5")
+    permText.textContent = perm
+    permsDiv.appendChild(permText)
+
+    boardDiv.appendChild(permsDiv)
+
+    const boardsList = document.getElementById("boards")
+
+    boardsList.appendChild(boardDiv)
+
+    boardDiv.addEventListener("click", () => {
+        window.location.href = `boardView.html?id=${id}`
+    })
+}
+
+async function getBoards() {
+    let config = await fetch("../config/config.json")
+    config = await config.json()
+    const apiLink = config.apiLink
+
+    const response = await fetch(`${apiLink}/interface/loadHome`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+
+
+
+    })
+
+    const data = await response.json()
+    console.log(data)
+
+    if (data.ok == true){
+        console.log("User validated")
+        const boardsList = document.getElementById("boards")
+
+        boardsList.innerHTML = ""
+        data.write.forEach(board => {
+            createBoard(board.title, "Editor", board._id)
+        });
+        
+    
+        data.read.forEach(board => {
+            createBoard(board.title, "Viewer", board._id)
+        });
+        
+        return true;
+    } else {
+        console.log("User login failed")
+        window.location = "../index.html"
+        return false;
+    }
+
+}
+
 async function load(){
 
     let config = await fetch("../config/config.json")
@@ -6,8 +75,8 @@ async function load(){
 
     const response = await fetch(`${apiLink}/auth/validate`, {
         method: "GET",
+        credentials: "include",
         headers: {
-            "Authorization": `Bearer ${sessionStorage.getItem("frames_token")}`,
             "Content-Type": "application/json",
         },
 
@@ -22,6 +91,8 @@ async function load(){
 
     if (data.ok == true){
         console.log("User validated")
+        getBoards()
+
         return true;
     } else {
         console.log("User login failed")
