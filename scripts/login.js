@@ -25,7 +25,7 @@ async function login() {
 
     if (data.ok == true){
         console.log("User logged in")
-
+window.location.href = "./pages/home.html"
         return true;
     } else {
         console.log("User login failed")
