@@ -25,7 +25,10 @@ async function login() {
 
     if (data.ok == true){
         console.log("User logged in")
-window.location.href = "./pages/home.html"
+        setTimeout(() => {
+            window.location.href = "./pages/home.html"
+
+        }, 50)
         return true;
     } else {
         console.log("User login failed")
