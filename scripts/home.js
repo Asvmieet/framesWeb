@@ -54,7 +54,7 @@ async function getBoards() {
 
         boardsList.innerHTML = ""
         data.write.forEach(board => {
-            createBoard(board.title, "Editor", board._id)
+            createBoard(board.name, "Editor", board._id)
         });
     
         data.read.forEach(board => {
