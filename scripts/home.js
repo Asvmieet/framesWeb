@@ -75,7 +75,7 @@ async function load(){
     let config = await fetch("../config/config.json")
     config = await config.json()
     const apiLink = config.apiLink
-    const token = sessionStorage.getItem("frames_token")
+    const token = localStorage.getItem("frames_token")
 
     const response = await fetch(`${apiLink}/auth/validate`, {
         method: "GET",
