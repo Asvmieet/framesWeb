@@ -6,16 +6,13 @@ async function login() {
 
     const response = await fetch(`${apiLink}/auth/login`, {
         method: "POST",
-        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
             username: document.getElementById("USR").value,
             password: document.getElementById("PSW").value
         })
-
     })
 
     const data = await response.json()
@@ -25,6 +22,9 @@ async function login() {
 
     if (data.ok == true){
         console.log("User logged in")
+        if (data.token) {
+            localStorage.setItem("frames_token", data.token)
+        }
         setTimeout(() => {
             window.location.href = "./pages/home.html"
 

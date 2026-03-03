@@ -30,15 +30,19 @@ async function getBoards() {
     config = await config.json()
     const apiLink = config.apiLink
 
+    const token = localStorage.getItem("frames_token")
+
+    if (!token) {
+        window.location = "../index.html"
+        throw new Error("No auth token found")
+    }
+
     const response = await fetch(`${apiLink}/interface/loadHome`, {
         method: "GET",
-        credentials: "include",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
         },
-
-
-
     })
 
     const data = await response.json()
@@ -52,7 +56,6 @@ async function getBoards() {
         data.write.forEach(board => {
             createBoard(board.title, "Editor", board._id)
         });
-        
     
         data.read.forEach(board => {
             createBoard(board.title, "Viewer", board._id)
@@ -75,13 +78,10 @@ async function load(){
 
     const response = await fetch(`${apiLink}/auth/validate`, {
         method: "GET",
-        credentials: "include",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
         },
-
-
-
     })
 
     const data = await response.json()

@@ -24,12 +24,12 @@ async function register() {
 
     if (data.ok == true){
         console.log("User registration success.")
-        sessionStorage.setItem("frames_token", data.token)
-
+        if (data.token) {
+            localStorage.setItem("frames_token", data.token)
+        }
         return true;
     } else {
         console.log("User registration failed.")
-
         return false;
     }
 
