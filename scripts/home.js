@@ -58,7 +58,7 @@ async function getBoards() {
         });
     
         data.read.forEach(board => {
-            createBoard(board.title, "Viewer", board._id)
+            createBoard(board.name, "Viewer", board._id)
         });
         
         return true;
