@@ -130,7 +130,7 @@ async function load(){
 }
 
 
-async function createBoardFModal() {
+async function createBoardFmodal() {
 // Create board from Modal
     let config = await fetch("../config/config.json")
     config = await config.json()
