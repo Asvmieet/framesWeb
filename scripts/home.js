@@ -60,6 +60,9 @@ async function getBoards() {
         data.read.forEach(board => {
             createBoard(board.name, "Viewer", board._id)
         });
+        data.owner.forEach(board => {
+            createBoard(board.name, "Owner", board._id)
+        });
         
         return true;
     } else {
