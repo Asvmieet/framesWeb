@@ -35,7 +35,6 @@ function addCreate(){
     let createBtn = document.createElement("button")
     createBtn.className = "createBoard"
     createBtn.innerText = "Create Board"
-    boardDiv.appendChild(title)
 
 
     const boardsList = document.getElementById("boards")
