@@ -87,6 +87,8 @@ async function getBoards() {
         data.owner.forEach(board => {
             createBoard(board.name, "Owner", board._id)
         });
+
+        addCreate()
         
         return true;
     } else {
