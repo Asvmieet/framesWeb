@@ -26,9 +26,8 @@ function createBoard(boardTitle,perm,id){
 }
 
 function createBoardModal(){
-   document.getElementById("modalOverlay").display = "block"
-   document.getElementById("createModal").display = "block"
-
+   document.getElementById("modalOverlay").style.display = "flex"
+   document.getElementById("createModal").style.display = "block"
 }
 
 function addCreate(){
