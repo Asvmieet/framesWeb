@@ -34,15 +34,32 @@
     <h5>Read Only</h5>
 </div>
 </div>
-
- 
-  
         <button class="createBoard">Create Board</button>
-
-
-
-
+      
     </div>
+
+<div class="modalOverlay" id="modalOverlay">
+    <div class="createModal" id="createModal">
+        <div class="loginItem">
+            <p class="loginText">Board Name</p>
+            <input type="text" placeholder="example Board" class="loginField" id="BRDCname">
+        </div>
+    
+        <div class="loginItem">
+            <p class="loginText">Add Editors</p>
+            <input type="text" placeholder="userID1,userID2" class="loginField" id="BRDCedit">
+        </div>
+
+        <div class="loginItem">
+            <p class="loginText">Add Viewers</p>
+            <input type="text" placeholder="userID3,userID4" class="loginField" id="BRDCview">
+        </div>
+
+        <button class="authButtonL" onclick="createBoard()">Create Board</button>
+
+        </div>
+</div>
+
 
     </body>
 </html>

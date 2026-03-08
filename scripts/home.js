@@ -25,6 +25,30 @@ function createBoard(boardTitle,perm,id){
     })
 }
 
+function createBoardModal(){
+   document.getElementById("modalOverlay").display = "block"
+   document.getElementById("createModal").display = "block"
+
+}
+
+function addCreate(){
+    let createBtn = document.createElement("button")
+    createBtn.className = "createBoard"
+    createBtn.innerText = "Create Board"
+    boardDiv.appendChild(title)
+
+
+    const boardsList = document.getElementById("boards")
+
+    boardsList.appendChild(boardDiv)
+
+    boardDiv.addEventListener("click", () => {
+
+createBoardModal()
+    })
+}
+
+
 async function getBoards() {
     let config = await fetch("../config/config.json")
     config = await config.json()
