@@ -40,9 +40,9 @@ function addCreate(){
 
     const boardsList = document.getElementById("boards")
 
-    boardsList.appendChild(boardDiv)
+    boardsList.appendChild(createBtn)
 
-    boardDiv.addEventListener("click", () => {
+    createBtn.addEventListener("click", () => {
 
 createBoardModal()
     })
@@ -89,7 +89,7 @@ async function getBoards() {
         });
 
         addCreate()
-        
+
         return true;
     } else {
         console.log("User login failed")
