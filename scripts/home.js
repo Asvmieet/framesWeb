@@ -129,4 +129,57 @@ async function load(){
     }
 }
 
+
+async function createBoardFModal() {
+// Create board from Modal
+    let config = await fetch("../config/config.json")
+    config = await config.json()
+    const apiLink = config.apiLink
+
+    let boardEdit = []
+    let boardView = []
+
+    let boardEditUS = document.getElementById("BRDCedit").value // Board edit un-split
+    let boardViewUS = document.getElementById("BRDCview").value // Board view un-split
+
+   boardEdit = boardEditUS.split(",")
+   boardView = boardViewUS.split(",")
+
+
+    const response = await fetch(`${apiLink}/boards/create`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+            name: document.getElementById("BRDCname").value,
+            owner_id: localStorage.getItem("frames_token"),
+            permsWrite: boardEdit,
+            permsRead: boardView 
+
+
+        })
+
+    })
+
+    const data = await response.json()
+    console.log(data)
+
+
+
+    if (data.ok == true){
+        console.log("Create board success.")
+
+        load()
+        return true;
+    } else {
+        console.log("Create board failed.")
+        return false;
+    }
+
+
+
+}
+
 window.onload = load;
