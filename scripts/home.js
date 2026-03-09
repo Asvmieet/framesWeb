@@ -30,6 +30,18 @@ function createBoardModal(){
    document.getElementById("createModal").style.display = "block"
 }
 
+function closeModal(){
+   document.getElementById("modalOverlay").style.display = "none"
+   document.getElementById("createModal").style.display = "none"
+}
+
+function modalCloseAuto(){
+   const overlay = document.getElementById("modalOverlay")
+   overlay.addEventListener("click", (clickEvent) => {
+      if (clickEvent.target === overlay) closeModal()
+   })
+}
+
 function addCreate(){
     let createBtn = document.createElement("button")
     createBtn.className = "createBoard"
@@ -182,4 +194,7 @@ async function createBoardFmodal() {
 
 }
 
-window.onload = load;
+window.onload = () => {
+   load()
+   modalCloseAuto()
+}
