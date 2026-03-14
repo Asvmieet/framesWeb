@@ -88,14 +88,14 @@ async function getBoards() {
 
         boardsList.innerHTML = ""
         data.write.forEach(board => {
-            createBoard(board.name, "Editor", board._id)
+            createBoard(board.name, "Editor", board.board_id)
         });
     
         data.read.forEach(board => {
             createBoard(board.name, "Viewer", board.board_id)
         });
         data.owner.forEach(board => {
-            createBoard(board.name, "Owner", board._id)
+            createBoard(board.name, "Owner", board.board_id)
         });
 
         addCreate()
