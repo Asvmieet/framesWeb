@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Frames - Board</title>
+        <link rel="stylesheet" href="../style/boardView.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <h1 id="boardName">Board Name</h1>
+
+        <div class="colList" id="cols">
+
+            <div class="col">
+          <h2>Column Title</h2>
+    
+                <div class="card">
+                    <h3>Card Title</h3>
+                    <div class="labels">
+                    <div class="perms">Label 1</div>
+                    <div class="perms">Label 2</div>
+                </div>
+
+                <div class="perms">Due Date</div>
+                </div>
+
+                
+                <div class="card">
+                    <h3>Card Title</h3>
+                    <div class="perms">Label 1</div>
+                </div>
+
+                
+                
+
+
+        </div>
+
+
+      
+
+<button class="newCol" onclick="createColModal()">New Column</button>
+
+
+
+                    
+</div>
+
+
+<div class="modalOverlay" id="modalOverlay">
+    <div class="createModalCol" id="createModalCol">
+        <div class="loginItem">
+            <p class="loginText">Column Name</p>
+            <input type="text" placeholder="exampleColumn" class="loginField" id="COLname">
+        </div>
+    
+     
+
+        <button class="authButtonL" onclick="">Create Board</button>
+
+        </div>
+</div>
+
+
+    </body>
+</html>
+
+<script src="../scripts/boardView.js"></script>
+

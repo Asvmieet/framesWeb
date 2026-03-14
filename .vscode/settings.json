@@ -1,0 +1,20 @@
+{
+    "liveServer.settings.ignoreFiles": [
+      "**/.git/**",
+      "**/.vscode/**",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/*.log"
+    ],
+    "liveServer.settings.fileTypes": [
+      "html",
+      "css",
+      "js",
+      "png",
+      "jpg",
+      "jpeg",
+      "gif"
+    ],
+    "files.autoSave": "off"
+  }
