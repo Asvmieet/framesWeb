@@ -5,7 +5,7 @@ async function loadPage(){
     const apiLink = config.apiLink
     const token = localStorage.getItem("frames_token")
 const params = new URLSearchParams(window.location.search)
-const boardID = params.get("id")
+const boardID = params.get("board_id")
 
     const response = await fetch(`${apiLink}/interface/loadpage?boardID=${boardID}`, {
         method: "GET",
