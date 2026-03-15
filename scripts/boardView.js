@@ -7,6 +7,8 @@ async function loadPage(){
 const params = new URLSearchParams(window.location.search)
 const boardID = params.get("id")
 
+console.log(`Token: ${token}`)
+
     const response = await fetch(`${apiLink}/interface/loadpage?boardID=${boardID}`, {
         method: "GET",
         headers: {
