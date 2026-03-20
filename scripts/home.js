@@ -157,6 +157,9 @@ async function createBoardFmodal() {
    boardEdit = boardEditUS.split(",")
    boardView = boardViewUS.split(",")
 
+   console.log(boardEdit)
+   console.log(boardView)
+
 
     const response = await fetch(`${apiLink}/boards/create`, {
         method: "POST",
