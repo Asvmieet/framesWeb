@@ -37,21 +37,19 @@ colDiv.appendChild(colTitle)
 colList.appendChild(colDiv)
 
 
+}
 
-    let createBtn = document.createElement("button")
-    createBtn.className = "newCol"
-    createBtn.innerText = "Create Column"
+let createBtn = document.createElement("button")
+createBtn.className = "newCol"
+createBtn.innerText = "Create Column"
 
 
-    colList.appendChild(createBtn)
+colList.appendChild(createBtn)
 
-    createBtn.addEventListener("click", () => {
+createBtn.addEventListener("click", () => {
 createColModal()
 
 })
-
-
-}
 
 
 }
