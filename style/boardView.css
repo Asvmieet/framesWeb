@@ -218,6 +218,22 @@ margin-bottom: 5px;
     margin-bottom: 0;
 }
 
+
+.newCard{
+    border-color: rgba(217, 217, 217, 0.67);
+    box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(13px);    background-size: 5px;
+    border-style: dashed;
+    color: var(--mainColor);
+    background-color: transparent !important;
+    width: 85%;
+    min-width: 0;
+    box-sizing: border-box;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+    border: none;
+}
 .labels{
     display: flex;
 }

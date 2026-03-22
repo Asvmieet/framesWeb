@@ -22,6 +22,8 @@ console.log(`Token: ${token}`)
     const data = await response.json()
     console.log(data)
 
+    // load cols
+
 let colList = document.getElementById("cols")
 colList.innerHTML = ""
 
@@ -50,6 +52,34 @@ createBtn.addEventListener("click", () => {
 createColModal()
 
 })
+
+// load cards
+
+for (let card = 0; card<data.cards.length; card++){
+
+
+let cardDiv = document.createElement("div")
+cardDiv.className = "card"
+let title = document.createElement("h3")
+title.textContent = data.cards[card].title
+cardDiv.appendChild(title)
+let column = document.getElementById(data.cards[card].column)
+column.appendChild(cardDiv)
+
+}
+
+let cardBtn = document.createElement("button")
+cardBtn.className = "newCard"
+cardBtn.innerText = "Create Card"
+
+
+column.appendChild(cardBtn)
+
+cardBtn.addEventListener("click", () => {
+createColModal()
+
+})
+
 
 
 }
