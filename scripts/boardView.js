@@ -25,7 +25,8 @@ console.log(`Token: ${token}`)
 
 for (let col = 0; col<data.columns.length;col++){
 
-    
+let colList = document.getElementById("cols")
+colList.innerHTML = ""
 let colDiv = document.createElement("div")
 colDiv.className = "col"
 colDiv.id = data.columns[col].column_id
@@ -33,10 +34,25 @@ let colTitle = document.createElement("h2")
 colTitle.textContent = data.columns[col].title
 colDiv.appendChild(colTitle)
 
-let colList = document.getElementById("cols")
 colList.appendChild(colDiv)
 
+
+
+    let createBtn = document.createElement("button")
+    createBtn.className = "newCol"
+    createBtn.innerText = "Create Column"
+
+
+    colList.appendChild(createBtn)
+
+    createBtn.addEventListener("click", () => {
+createColModal()
+
+})
+
+
 }
+
 
 }
 
