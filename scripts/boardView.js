@@ -68,18 +68,23 @@ column.appendChild(cardDiv)
 
 }
 
-let cardBtn = document.createElement("button")
-cardBtn.className = "newCard"
-cardBtn.innerText = "Create Card"
 
-
-column.appendChild(cardBtn)
-
-cardBtn.addEventListener("click", () => {
-createColModal()
-
+let allCols = document.querySelectorAll(".col")
+allCols.forEach(col =>{
+    let cardBtn = document.createElement("button")
+    cardBtn.className = "newCard"
+    cardBtn.innerText = "Create Card"
+    
+    
+    col.appendChild(cardBtn)
+    
+    cardBtn.addEventListener("click", () => {
+    createColModal()
+    
+    })
+    
+    
 })
-
 
 
 }
