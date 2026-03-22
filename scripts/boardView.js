@@ -21,6 +21,23 @@ console.log(`Token: ${token}`)
 
     const data = await response.json()
     console.log(data)
+
+
+for (let col = 0; col<data.columns.length;col++){
+
+    
+let colDiv = document.createElement("div")
+colDiv.className = "col"
+colDiv.id = data.columns[col].column_id
+let colTitle = document.createElement("h2")
+colTitle.textContent = data.columns[col].title
+colDiv.appendChild(colTitle)
+
+let colList = document.getElementById("cols")
+colList.appendChild(colDiv)
+
+}
+
 }
 
 function createColModal(){
