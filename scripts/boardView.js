@@ -22,11 +22,11 @@ console.log(`Token: ${token}`)
     const data = await response.json()
     console.log(data)
 
+let colList = document.getElementById("cols")
+colList.innerHTML = ""
 
 for (let col = 0; col<data.columns.length;col++){
 
-let colList = document.getElementById("cols")
-colList.innerHTML = ""
 let colDiv = document.createElement("div")
 colDiv.className = "col"
 colDiv.id = data.columns[col].column_id
