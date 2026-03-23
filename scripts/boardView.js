@@ -148,7 +148,8 @@ function createCardModal(){
        let config = await fetch("../config/config.json")
        config = await config.json()
        const apiLink = config.apiLink
-   
+       const params = new URLSearchParams(window.location.search)
+
 let cardTitle = document.getElementById("CRDname").textContent
 let cardDesc = document.getElementById("CRDdisc").textContent
    
