@@ -95,18 +95,46 @@ function createColModal(){
     modalCloseAuto()
  }
 
- function closeModal(){
-    document.getElementById("modalOverlay").style.display = "none"
-    document.getElementById("createModalCol").style.display = "none"
+
+
+function createCardModal(){
+    document.getElementById("modalOverlayCard").style.display = "flex"
+    document.getElementById("createModalCard").style.display = "block"
+
+    modalCloseAuto()
  }
- 
- function modalCloseAuto(){
-    const overlay = document.getElementById("modalOverlay")
+
+ function closeModalCardCreate(){
+    document.getElementById("modalOverlayCard").style.display = "none"
+    document.getElementById("createModalCard").style.display = "none"
+ }
+
+ function modalCloseAutoCardCreate(){
+    const overlay = document.getElementById("modalOverlayCard")
     overlay.addEventListener("click", (clickEvent) => {
        if (clickEvent.target === overlay){
-        closeModal()
+        closeModalCardCreate()
 
        }
     })
  }
+
+
+ function closeModalCol(){
+    document.getElementById("modalOverlay").style.display = "none"
+    document.getElementById("createModalCol").style.display = "none"
+ }
+ 
+
+ function modalCloseAuto(){
+    const overlay = document.getElementById("modalOverlay")
+    overlay.addEventListener("click", (clickEvent) => {
+       if (clickEvent.target === overlay){
+        closeModalCol()
+
+       }
+    })
+ }
+
+ 
 window.onload = loadPage()

@@ -30,7 +30,7 @@
                     <div class="perms">Label 1</div>
                 </div>
 
-                <button class="newCard" onclick="createColModal()">New Card</button>
+                <button class="newCard" onclick="createCardModal()">New Card</button>
 
 
                 
@@ -62,7 +62,32 @@
         <button class="authButtonL" onclick="">Create Board</button>
 
         </div>
+
+
 </div>
+
+<div class="modalOverlay" id="modalOverlayCard">
+
+
+<div class="createModalCard" id="createModalCard">
+    <div class="loginItem">
+        <p class="loginText">Card Name</p>
+        <input type="text" placeholder="exampleCard" class="loginField" id="CRDname">
+    </div>
+
+    <div class="loginItem">
+        <p class="loginText">Card Description</p>
+        <span>
+        <textarea type="text" placeholder="This card is an amazing card that is really helpful in explaining how things occur." class="cardDisc" id="CRDdisc"></textarea>
+        </span>
+    </div>
+ 
+
+    <button class="authButtonL" onclick="createCardModal()">Create Card</button>
+
+    </div>
+
+    </div>
 
 
     </body>
