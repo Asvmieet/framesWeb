@@ -188,6 +188,7 @@ console.log(cardTitle)
            console.log("Create card success.")
    
            loadPage()
+           closeModalCardCreate()
            return true;
        } else {
            console.log("Create card failed.")
@@ -197,5 +198,57 @@ console.log(cardTitle)
    
    
    }
+
+   async function createColumn() {
+      // Create card from Modal
+          let config = await fetch("../config/config.json")
+          config = await config.json()
+          const apiLink = config.apiLink
+          const params = new URLSearchParams(window.location.search)
+   
+   let colTitle = document.getElementById("COLname").value
+   
+   // debugging
+
+      
+          const response = await fetch(`${apiLink}/column/create`, {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${localStorage.getItem("frames_token")}`,
+      
+              },
+   
+              body: JSON.stringify({
+                  title: colTitle,
+                  boardID: params.get("id"),
+                  position: 1,
+   
+     
+      
+      
+              })
+      
+          })
+      
+          const data = await response.json()
+          console.log(data)
+      
+      
+      
+          if (data.ok == true){
+              console.log("Create column success.")
+      
+              loadPage()
+              closeModalCol()
+              return true;
+          } else {
+              console.log("Create column failed.")
+              return false;
+          }
+      
+      
+      
+      }
  
 window.onload = loadPage()
