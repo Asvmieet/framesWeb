@@ -161,7 +161,7 @@ let cardDesc = document.getElementById("CRDdisc").textContent
            },
    
            body: JSON.stringify({
-               title: document.getElementById("BRDCname").textContent,
+               title: document.getElementById("CRDname").textContent,
                boardID: params.get("id"),
                position: 1,
                columnID: colIDBtn
