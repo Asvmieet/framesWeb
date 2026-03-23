@@ -101,7 +101,7 @@ function createCardModal(){
     document.getElementById("modalOverlayCard").style.display = "flex"
     document.getElementById("createModalCard").style.display = "block"
 
-    modalCloseAuto()
+    modalCloseAutoCardCreate()
  }
 
  function closeModalCardCreate(){
