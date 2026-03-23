@@ -250,5 +250,83 @@ console.log(cardTitle)
       
       
       }
+
+      // Load Card
+
+      async function loadCard(cardID) {
+         const params = new URLSearchParams(window.location.search)
+
+         const boardID = params.get("id")
+
+         let config = await fetch("../config/config.json")
+         config = await config.json()
+         const apiLink = config.apiLink
+         const token = localStorage.getItem("frames_token")
+  
+     console.log(`Token: ${token}`)
+     
+         const response = await fetch(`${apiLink}/card/get?boardID=${boardID}&cardID=${cardID}`, {
+             method: "GET",
+             headers: {
+                 "Content-Type": "application/json",
+                 "Authorization": `Bearer ${token}`,
+     
+             },
+     
+         })
+     
+         const data = await response.json()
+         console.log(data)
+
+      //   <h3 id="cardTitleModal">Card Title</h3>
+        // <div class="labelsList" id="labelsList">
+         //<div class="cardLabels">Label 1</div>
+         //<div class="cardLabels">Label 1</div>
+         //</div>
+
+    //   <p id="cardDiscModal">description</p>
+
+     //  <div class="options">
+      //   <button class="cardOptions">Labels</button>
+      //   <button class="cardOptions">Move</button>
+       //  <button class="cardOptions" id="dueDateOption">Due Date</button>
+       //  <button class="cardOptions">Manage Card</button>
+
+
+ //      </div>
+ 
+      //   </div>
+
+      let cardTitle_d = data.title
+      let cardDesc = data.description
+      let labels = data.labels
+      let dueDate = data.due_date
+
+      document.getElementById("cardTitleModal").innerHTML = cardTitle_d
+      document.getElementById("cardDiscModal").innerHTML = cardDesc
+
+       let Ll =  document.getElementById("labelsList")
+       Ll.innerHTML = ""
+
+       for (let label = 0; label < labels.length ; label++){
+         let newLabel = document.createElement("div")
+         newLabel.className = "cardLabels"
+         newLabel.innerHTML = labels[label]
+         Ll.appendChild(newLabel)
+       }
+
+       if(dueDate !== null){
+         let date = `${dueDate.getDate()}/${dueDate.getMonth() + 1}/${dueDate.getFullYear()}`
+       document.getElementById("dueDateOption").innerHTML = date
+       } else {
+         document.getElementById("dueDateOption").innerHTML = "Due Date"
+
+       }
+     
+
+         
+      }
  
 window.onload = loadPage()
+
+window,onload = loadCard("6d341ea6-8358-4155-974c-0cd40f1d6f84")
