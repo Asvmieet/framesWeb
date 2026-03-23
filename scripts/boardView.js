@@ -308,7 +308,7 @@ console.log(cardTitle)
        let Ll =  document.getElementById("labelsList")
        Ll.innerHTML = ""
 
-       for (let label = 0; label < labels.length ; label++){
+       for (let label = 0; label < data.labels.length ; label++){
          let newLabel = document.createElement("div")
          newLabel.className = "cardLabels"
          newLabel.innerHTML = labels[label]
