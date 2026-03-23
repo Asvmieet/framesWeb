@@ -329,4 +329,4 @@ console.log(cardTitle)
  
 window.onload = loadPage()
 
-window,onload = loadCard("6d341ea6-8358-4155-974c-0cd40f1d6f84")
+window.onload = loadCard("6d341ea6-8358-4155-974c-0cd40f1d6f84")
