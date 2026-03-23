@@ -151,8 +151,12 @@ function createCardModal(colID){
        const apiLink = config.apiLink
        const params = new URLSearchParams(window.location.search)
 
-let cardTitle = document.getElementById("CRDname").textContent
+let cardTitle = document.getElementById("CRDname").value
 let cardDesc = document.getElementById("CRDdisc").textContent
+
+// debugging
+console.log(colIDBtn)
+console.log(cardTitle)
    
        const response = await fetch(`${apiLink}/card/create`, {
            method: "POST",
@@ -161,9 +165,9 @@ let cardDesc = document.getElementById("CRDdisc").textContent
                "Authorization": `Bearer ${localStorage.getItem("frames_token")}`,
    
            },
-   
+
            body: JSON.stringify({
-               title: document.getElementById("CRDname").textContent,
+               title: cardTitle,
                boardID: params.get("id"),
                position: 1,
                columnID: colIDBtn
