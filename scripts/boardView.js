@@ -103,7 +103,7 @@ function createColModal(){
 
 
 
-function createCardModal(col){
+function createCardModal(colID){
    colIDBtn = colID
 
     document.getElementById("modalOverlayCard").style.display = "flex"
