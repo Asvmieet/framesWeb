@@ -1,3 +1,7 @@
+// var:
+
+let colIDBtn = "nil"
+
 async function loadPage(){
 
     let config = await fetch("../config/config.json")
@@ -79,7 +83,7 @@ allCols.forEach(col =>{
     col.appendChild(cardBtn)
     
     cardBtn.addEventListener("click", () => {
-    createCardModal()
+    createCardModal(col.id)
     
     })
     
@@ -89,10 +93,13 @@ allCols.forEach(col =>{
 
 }
 
-function createColModal(){
+function createColModal(colID){
+   colIDBtn = colID
     document.getElementById("modalOverlay").style.display = "flex"
     document.getElementById("createModalCol").style.display = "block"
     modalCloseAuto()
+
+
  }
 
 
@@ -136,5 +143,53 @@ function createCardModal(){
     })
  }
 
+ async function createCard() {
+   // Create card from Modal
+       let config = await fetch("../config/config.json")
+       config = await config.json()
+       const apiLink = config.apiLink
+   
+let cardTitle = document.getElementById("CRDname").textContent
+let cardDesc = document.getElementById("CRDdisc").textContent
+   
+       const response = await fetch(`${apiLink}/card/create`, {
+           method: "POST",
+           headers: {
+               "Content-Type": "application/json",
+               "Authorization": `Bearer ${localStorage.getItem("frames_token")}`,
+   
+           },
+   
+           body: JSON.stringify({
+               title: document.getElementById("BRDCname").value,
+               boardID: params.get("id"),
+               position: 1,
+               columnID: colIDBtn
+
+  
+   
+   
+           })
+   
+       })
+   
+       const data = await response.json()
+       console.log(data)
+   
+   
+   
+       if (data.ok == true){
+           console.log("Create card success.")
+   
+           loadPage()
+           return true;
+       } else {
+           console.log("Create card failed.")
+           return false;
+       }
+   
+   
+   
+   }
  
 window.onload = loadPage()
