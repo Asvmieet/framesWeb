@@ -79,7 +79,7 @@ allCols.forEach(col =>{
     col.appendChild(cardBtn)
     
     cardBtn.addEventListener("click", () => {
-    createColModal()
+    createCardModal()
     
     })
     
