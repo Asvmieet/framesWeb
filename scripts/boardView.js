@@ -93,8 +93,7 @@ allCols.forEach(col =>{
 
 }
 
-function createColModal(colID){
-   colIDBtn = colID
+function createColModal(){
     document.getElementById("modalOverlay").style.display = "flex"
     document.getElementById("createModalCol").style.display = "block"
     modalCloseAuto()
@@ -104,7 +103,9 @@ function createColModal(colID){
 
 
 
-function createCardModal(){
+function createCardModal(col){
+   colIDBtn = colID
+
     document.getElementById("modalOverlayCard").style.display = "flex"
     document.getElementById("createModalCard").style.display = "block"
 
