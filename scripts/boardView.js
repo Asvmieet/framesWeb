@@ -297,10 +297,10 @@ console.log(cardTitle)
  
       //   </div>
 
-      let cardTitle_d = data.title
-      let cardDesc = data.description
-      let cardLabels = data.labels
-      let date = data.due_date
+      let cardTitle_d = data.cardDoc.title
+      let cardDesc = data.cardDoc.description
+      let cardLabels = data.cardDoc.labels
+      let date = data.cardDoc.due_date
       let dueDate
       if(date !== null){
          let dateObj = new Date(date)
