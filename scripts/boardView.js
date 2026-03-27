@@ -174,7 +174,8 @@ console.log(cardTitle)
                title: cardTitle,
                boardID: params.get("id"),
                position: 1,
-               columnID: colIDBtn
+               columnID: colIDBtn,
+               description: cardDesc
 
   
    
