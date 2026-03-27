@@ -319,13 +319,14 @@ console.log(cardTitle)
        let Ll =  document.getElementById("labelsList")
        Ll.innerHTML = ""
 
+       if(cardLabels.length !== 0){
        for (let label = 0; label < cardLabels.length ; label++){
          let newLabel = document.createElement("div")
          newLabel.className = "cardLabels"
          newLabel.textContent = cardLabels[label]
          Ll.appendChild(newLabel)
        }
-
+      }
 
        
      
