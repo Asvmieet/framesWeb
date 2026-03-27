@@ -70,6 +70,10 @@ cardDiv.appendChild(title)
 let column = document.getElementById(data.cards[card].column)
 column.appendChild(cardDiv)
 
+cardDiv.addEventListener("click", () => {
+   loadCard(data.cards[card].card_id)
+} )
+
 }
 
 
@@ -330,13 +334,29 @@ console.log(cardTitle)
 
        
      
-
+         document.getElementById("modalOverlayCardView").style.display = "flex"
+         document.getElementById("createModalCardView").style.display = "block"
+         cardViewCloseAuto()
+     
+     
+      
          
       }
+
+      function cardViewCloseAuto(){
+         const overlay = document.getElementById("modalOverlayCardView")
+         overlay.addEventListener("click", (clickEvent) => {
+            if (clickEvent.target === overlay){
+                  document.getElementById("modalOverlayCardView").style.display = "none"
+                  document.getElementById("createModalCardView").style.display = "none"
+               
+            }
+         })
+      }
+     
  
 window.onload = () => {
    loadPage()
 
-   loadCard("036af3ce-76ea-4b9a-b5c7-f644c21d0cb5")
 }
 
