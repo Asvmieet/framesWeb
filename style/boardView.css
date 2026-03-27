@@ -373,3 +373,9 @@ input{
     margin-bottom: 10px;
     margin-top: 5px;
 }
+
+input::placeholder{
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+}
