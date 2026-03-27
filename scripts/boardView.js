@@ -300,7 +300,18 @@ console.log(cardTitle)
       let cardTitle_d = data.title
       let cardDesc = data.description
       let cardLabels = data.labels
-      let dueDate = data.due_date
+      let date = data.due_date
+      let dueDate
+      if(date !== null){
+         let dateObj = new Date(date)
+         dueDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`
+         document.getElementById("dueDateOption").innerHTML = dueDate
+
+      } else{
+         document.getElementById("dueDateOption").innerHTML = "Due Date"
+
+      }
+
 
       document.getElementById("cardTitleModal").innerHTML = cardTitle_d
       document.getElementById("cardDiscModal").innerHTML = cardDesc
@@ -311,22 +322,20 @@ console.log(cardTitle)
        for (let label = 0; label < cardLabels.length ; label++){
          let newLabel = document.createElement("div")
          newLabel.className = "cardLabels"
-         newLabel.innerHTML = labels[label]
+         newLabel.textContent = cardLabels[label]
          Ll.appendChild(newLabel)
        }
 
-       if(dueDate !== null){
-         let date = `${dueDate.getDate()}/${dueDate.getMonth() + 1}/${dueDate.getFullYear()}`
-       document.getElementById("dueDateOption").innerHTML = date
-       } else {
-         document.getElementById("dueDateOption").innerHTML = "Due Date"
 
-       }
+       
      
 
          
       }
  
-window.onload = loadPage()
+window.onload = () => {
+   loadPage()
 
-window.onload = loadCard("6d341ea6-8358-4155-974c-0cd40f1d6f84")
+   loadCard("6d341ea6-8358-4155-974c-0cd40f1d6f84")
+}
+
