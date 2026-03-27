@@ -156,7 +156,7 @@ function createCardModal(colID){
        const params = new URLSearchParams(window.location.search)
 
 let cardTitle = document.getElementById("CRDname").value
-let cardDesc = document.getElementById("CRDdisc").textContent
+let cardDesc = document.getElementById("CRDdisc").value
 
 // debugging
 console.log(colIDBtn)
