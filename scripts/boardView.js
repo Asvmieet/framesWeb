@@ -335,7 +335,7 @@ console.log(cardTitle)
 
 
       document.getElementById("cardTitleModal").innerHTML = cardTitle_d
-      document.getElementById("cardDiscModal").innerHTML = cardDesc
+      document.getElementById("cardDiscModal").value = cardDesc
 
        let Ll =  document.getElementById("labelsList")
        Ll.innerHTML = ""
