@@ -345,6 +345,17 @@ font-family: 'Times New Roman', Times, serif;
 color: rgba(217, 217, 217, 0.67);;
 font-size: medium;
 margin-bottom: 5px;
+text-align: center;
+
+}
+
+.cardOptions::placeholder{
+font-family: 'Times New Roman', Times, serif;
+color: rgba(217, 217, 217, 0.67);;
+font-size: medium;
+margin-bottom: 5px;
+text-align: center;
+
 }
 
 .cardLabels{
@@ -364,7 +375,7 @@ margin-bottom: 5px;
     font-size: x-small;
 }
 
-input{
+.cardDiscModal{
     background: transparent;
     width: 100%;
     height: auto;
@@ -374,8 +385,13 @@ input{
     margin-top: 5px;
 }
 
-input::placeholder{
+.cardDiscModal::placeholder{
     color: black;
     font-family: 'Times New Roman', Times, serif;
     font-size: medium;
 }
+
+input{
+    border: none;
+}
+
