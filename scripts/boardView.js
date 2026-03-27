@@ -300,13 +300,23 @@ console.log(cardTitle)
  //      </div>
  
       //   </div>
+      let cardTitle_d
 
-      let cardTitle_d = data.cardDoc.title
-      let cardDesc = data.cardDoc.description
+      if (data.cardDoc.title){
+         cardTitle_d = data.cardDoc.title
+      } else cardTitle_d = ""
+
+      let cardDesc
+
+      if (data.cardDoc.description){
+         cardDesc = data.cardDoc.description
+      } else cardDesc = ""
+      
+     
       let cardLabels = data.cardDoc.labels
       let date = data.cardDoc.due_date
       let dueDate
-      if(date !== null){
+      if(date !== null || date){
          let dateObj = new Date(date)
          dueDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`
          document.getElementById("dueDateOption").innerHTML = dueDate
