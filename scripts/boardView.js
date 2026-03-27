@@ -316,7 +316,13 @@ console.log(cardTitle)
       let cardLabels = data.cardDoc.labels
       let date = data.cardDoc.due_date
       let dueDate
-      if(date !== null || date){
+
+      if (!data.cardDoc.due_date){
+         document.getElementById("dueDateOption").innerHTML = "Due Date"
+
+      }
+
+      if(data.cardDoc.due_date){
          let dateObj = new Date(date)
          dueDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`
          document.getElementById("dueDateOption").innerHTML = dueDate
