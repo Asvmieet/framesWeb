@@ -106,6 +106,16 @@ allCols.forEach(col =>{
 document.querySelectorAll(".col").forEach(col => {
    col.addEventListener("dragover", e => {
       e.preventDefault();
+
+      if(!draggedCard) return;
+
+      const afCrd = anyDrag(col, e.clientY)
+
+      if(afCrd == null) {
+         col.appendChild(draggedCard);
+      } else {
+         col.insertBefore(draggedCard, afCrd)
+      }
    })
 
 col.addEventListener("drop", async e => {
@@ -556,13 +566,15 @@ let dateBox = document.getElementById("dueDateOption")
                if (e.target.classList.contains("card")) {
                   draggedCard = e.target
                   orCol = e.target.parentElement
+                     e.target.classList.add("drag")
                }
             })
 
             document.addEventListener("dragend", async e => {
                if (draggedCard){
                   let newCol = draggedCard.parentElement
-                  
+                  e.target.classList.remove("drag")
+
                   if(orCol !== newCol){
                     await updateColPos(newCol)
                     loadPage()
@@ -627,6 +639,24 @@ console.log(`Token: ${token}`)
 
 
  }
+
+
+ function anyDrag (col, y){
+   const cards = [...col.querySelectorAll(".card:not(.drag)")]
+   let closeCrd = {offset: Number.NEGATIVE_INFINITY, element: null}
+
+   cards.forEach(c => {
+      const bx = c.getBoundingClientRect()
+      const offset = y - bx.top - bx.height / 2
+
+      if(offset < 0 && offset > closeCrd.offset) {
+         closeCrd.offset = offset
+         closeCrd.element = c
+      }
+   })
+
+   return closeCrd.element
+}
  
 
 

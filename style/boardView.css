@@ -269,6 +269,18 @@ margin-bottom: 5px;
     margin-bottom: 10px;
     flex-shrink: 0;
 }
+
+.drag{
+    background-color: rgba(217, 217, 217, 0.67);
+    box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(13px);
+    width: 85%;
+    min-width: 0;
+    box-sizing: border-box;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
 .card:last-child{
     margin-bottom: 0;
 }
