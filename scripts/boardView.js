@@ -403,6 +403,7 @@ console.log(cardTitle)
 
          if(data.ok){
             console.log("Updated the due date")
+            loadCard(activeCardID)
          } else {
             console.warn("Due Date update Failed.")
          }
