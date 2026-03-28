@@ -588,17 +588,26 @@ let dateBox = document.getElementById("dueDateOption")
       
  async function updateColPos(col) {
    let cards = [...col.querySelectorAll(".card")]
+   let params = new URLSearchParams(window.location.search)
+   let boardID = params.get("id")
+
+   const updates = cards.map((c,i) => ({
+      cardID: c.id,
+      position: i,
+      columnID: col.id
+   }))
+
+   if (updates.length === 0) return;
+
    let config = await fetch("../config/config.json")
    config = await config.json()
    const apiLink = config.apiLink
    const token = localStorage.getItem("frames_token")
   
-   for (let i = 0; i < cards.length; i++){
-      const card = cards[i]
-
+try{
       
 
-      const response = await fetch(`${apiLink}/card/edit/${card.id}`, {
+      const response = await fetch(`${apiLink}/card/posEdit`, {
          method: "PATCH",
          headers: {
              "Content-Type": "application/json",
@@ -607,38 +616,27 @@ let dateBox = document.getElementById("dueDateOption")
          },
   
          body: JSON.stringify({
-            value: "position",
-            content: i
+            boardID,
+            updates
          })
   
        })
-  
-
-       const r = await fetch(`${apiLink}/card/edit/${card.id}`, {
-         method: "PATCH",
-         headers: {
-             "Content-Type": "application/json",
-             "Authorization": `Bearer ${token}`,
-  
-         },
-  
-         body: JSON.stringify({
-            value: "column",
-            content: col.id
-         })
-  
-       })
+   
+const data = await response.json()
+console.log("Update perms res:", data)
+      } catch(e) {
+         console.log("Update perms failed:", e)
+      }
+      
   
   
 
-   }
-
-
-console.log(`Token: ${token}`)
+      }
 
 
 
- }
+
+ 
 
 
  function anyDrag (col, y){
