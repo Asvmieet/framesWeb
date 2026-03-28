@@ -421,7 +421,7 @@ let dateBox = document.getElementById("dueDateOption")
       dateBox.addEventListener('keydown', e => {
          if (dateBox === document.activeElement) {
            if (e.key === 'Enter') {
-            let [m,d,y] = dateBox.value.split("/").map(Number)
+            let [d,m,y] = dateBox.value.split("/").map(Number) // Set date format
             let fYear = y + 2000
 
             let date = new Date(fYear, m-1, d)
