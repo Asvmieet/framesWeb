@@ -422,7 +422,7 @@ let dateBox = document.getElementById("dueDateOption")
             let date = new Date(fYear, m-1, d)
             let days = dateBox.value.split("/").length
             if (days == 1){
-               date = null
+               date = "clear"
             }
 
 
