@@ -433,17 +433,7 @@ let dateBox = document.getElementById("dueDateOption")
        });
       }
 
-    function setUpDateBox(){
-       let dateBox = document.getElementById("labelsOption")
-                     
-       dateBox.addEventListener('keydown', e => {
-       if (dateBox === document.activeElement) {
-       if (e.key === 'Enter') {
-       editDate(date)
-       }
-       }
-      });
-       }
+  
                      
                   
       
@@ -485,12 +475,24 @@ let dateBox = document.getElementById("dueDateOption")
          }
      
 
+         function setUpLabels(){
+            let labelBox = document.getElementById("labelsOption")
+                          
+            labelBox.addEventListener('keydown', e => {
+            if (labelBox === document.activeElement) {
+            if (e.key === 'Enter') {
+            addLabel(labelBox.value)
+            }
+            }
+           });
+            }
       
  
  
 window.onload = () => {
    loadPage()
    setUpDateBox()
+   setUpLabels()
 
 }
 
