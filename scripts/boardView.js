@@ -112,7 +112,8 @@ document.querySelectorAll(".col").forEach(col => {
       const afCrd = anyDrag(col, e.clientY)
 
       if(afCrd == null) {
-         col.appendChild(draggedCard);
+         const createBtn = col.querySelector(".newCard")
+         col.insertBefore(draggedCard,createBtn);
       } else {
          col.insertBefore(draggedCard, afCrd)
       }
@@ -575,14 +576,12 @@ let dateBox = document.getElementById("dueDateOption")
                   let newCol = draggedCard.parentElement
                   e.target.classList.remove("drag")
 
-                  if(orCol !== newCol){
-                    await updateColPos(newCol)
-                    loadPage()
-
-                  }
+                 await updateColPos(newCol)
+                 
 
                   orCol = null
                   newCol = null
+                  draggedCard = null
                }
             })
       
