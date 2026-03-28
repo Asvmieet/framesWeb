@@ -348,6 +348,11 @@ console.log(cardTitle)
          newLabel.className = "cardLabels"
          newLabel.textContent = cardLabels[label]
          Ll.appendChild(newLabel)
+
+         newLabel.addEventListener('click', e => {
+            removeLabel(cardLabels[label])
+         })
+
        }
       }
 
@@ -471,6 +476,43 @@ let dateBox = document.getElementById("dueDateOption")
                loadCard(activeCardID)
             } else {
                console.warn("Label Adding Failed.")
+            }
+         }
+     
+
+         async function removeLabel(labelName){
+            let config = await fetch("../config/config.json")
+            config = await config.json()
+            const apiLink = config.apiLink
+            const token = localStorage.getItem("frames_token")
+     
+        console.log(`Token: ${token}`)
+        
+            const response = await fetch(`${apiLink}/card/label/${activeCardID}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+        
+                },
+   
+                body: JSON.stringify({
+                  type: "remove",
+                  name: labelName,
+               
+      
+              })
+        
+            })
+        
+            const data = await response.json()
+            console.log(data)
+   
+            if(data.ok){
+               console.log("Removed Label")
+               loadCard(activeCardID)
+            } else {
+               console.warn("Label Removal Failed.")
             }
          }
      
