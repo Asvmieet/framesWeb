@@ -420,6 +420,11 @@ let dateBox = document.getElementById("dueDateOption")
             let fYear = y + 2000
 
             let date = new Date(fYear, m-1, d)
+            let days = dateBox.value.split("/").length
+            if (days == 1){
+               date = null
+            }
+
 
             editDate(date)
             
