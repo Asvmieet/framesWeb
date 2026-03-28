@@ -643,19 +643,15 @@ console.log(`Token: ${token}`)
 
  function anyDrag (col, y){
    const cards = [...col.querySelectorAll(".card:not(.drag)")]
-   let closeCrd = {offset: Number.NEGATIVE_INFINITY, element: null}
-
-   cards.forEach(c => {
-      const bx = c.getBoundingClientRect()
-      const offset = y - bx.top - bx.height / 2
-
-      if(offset < 0 && offset > closeCrd.offset) {
-         closeCrd.offset = offset
-         closeCrd.element = c
-      }
-   })
-
-   return closeCrd.element
+//   let closeCrd = {offset: Number.NEGATIVE_INFINITY, element: null}
+for (let c of cards) {
+   const bx = c.getBoundingClientRect()
+   const crdC = bx.top + bx.height
+   if (y < crdC){
+      return c
+   }
+}
+   return null
 }
  
 
