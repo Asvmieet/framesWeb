@@ -382,7 +382,7 @@ console.log(cardTitle)
   
      console.log(`Token: ${token}`)
      
-         const response = await fetch(`${apiLink}/card/edit?cardID=${activeCardID}`, {
+         const response = await fetch(`${apiLink}/card/edit/${activeCardID}`, {
              method: "PATCH",
              headers: {
                  "Content-Type": "application/json",
