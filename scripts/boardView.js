@@ -1,6 +1,7 @@
 // var:
 
 let colIDBtn = "nil"
+let activeCardID = "nil"
 
 async function loadPage(){
 
@@ -301,6 +302,8 @@ console.log(cardTitle)
  //      </div>
  
       //   </div>
+
+      activeCardID = cardID
       let cardTitle_d
 
       if (data.cardDoc.title){
@@ -370,10 +373,65 @@ console.log(cardTitle)
             }
          })
       }
+
+      async function editDate(date){
+         let config = await fetch("../config/config.json")
+         config = await config.json()
+         const apiLink = config.apiLink
+         const token = localStorage.getItem("frames_token")
+  
+     console.log(`Token: ${token}`)
+     
+         const response = await fetch(`${apiLink}/card/edit?cardID=${activeCardID}`, {
+             method: "PATCH",
+             headers: {
+                 "Content-Type": "application/json",
+                 "Authorization": `Bearer ${token}`,
+     
+             },
+
+             body: JSON.stringify({
+               value: "due_date",
+               content: date,
+            
+   
+           })
+     
+         })
+     
+         const data = await response.json()
+         console.log(data)
+
+         if(data.ok){
+            console.log("Updated the due date")
+         } else {
+            console.warn("Due Date update Failed.")
+         }
+      }
+
+
+      function setUpDateBox(){
+let dateBox = document.getElementById("dueDateOption")
+
+      textBtn.addEventListener('keydown', e => {
+         if (dateBox === document.activeElement) {
+           if (e.key === 'Enter') {
+            let [m,d,y] = dateBox.value.split("/").map(Number)
+            let fYear = y + 2000
+
+            let date = new Date(fYear, m-1, d)
+
+            editDate(date)
+            
+         }
+         }
+       });
+      }
      
  
 window.onload = () => {
    loadPage()
+   setUpDateBox()
 
 }
 
