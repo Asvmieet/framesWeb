@@ -641,15 +641,19 @@ console.log("Update perms res:", data)
 
  function anyDrag (col, y){
    const cards = [...col.querySelectorAll(".card:not(.drag)")]
-//   let closeCrd = {offset: Number.NEGATIVE_INFINITY, element: null}
+let cloxOS = Number.NEGATIVE_INFINITY
+let clox = null
+
 for (let c of cards) {
    const bx = c.getBoundingClientRect()
-   const crdC = bx.top + bx.height
-   if (y < crdC){
-      return c
+   const OS = y - (bx.top + bx.height / 2)
+   if (OS < 0 && OS > cloxOS){
+      cloxOS = OS
+      clox = c
+
    }
 }
-   return null
+   return clox
 }
  
 
