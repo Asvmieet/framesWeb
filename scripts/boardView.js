@@ -432,7 +432,61 @@ let dateBox = document.getElementById("dueDateOption")
          }
        });
       }
+
+    function setUpDateBox(){
+       let dateBox = document.getElementById("labelsOption")
+                     
+       dateBox.addEventListener('keydown', e => {
+       if (dateBox === document.activeElement) {
+       if (e.key === 'Enter') {
+       editDate(date)
+       }
+       }
+      });
+       }
+                     
+                  
+      
+
+         async function addLabel(labelName){
+            let config = await fetch("../config/config.json")
+            config = await config.json()
+            const apiLink = config.apiLink
+            const token = localStorage.getItem("frames_token")
      
+        console.log(`Token: ${token}`)
+        
+            const response = await fetch(`${apiLink}/card/label/${activeCardID}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+        
+                },
+   
+                body: JSON.stringify({
+                  type: "add",
+                  name: labelName,
+               
+      
+              })
+        
+            })
+        
+            const data = await response.json()
+            console.log(data)
+   
+            if(data.ok){
+               console.log("Added Label")
+               loadCard(activeCardID)
+            } else {
+               console.warn("Label Adding Failed.")
+            }
+         }
+     
+
+      
+ 
  
 window.onload = () => {
    loadPage()
