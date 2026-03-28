@@ -326,7 +326,7 @@ console.log(cardTitle)
       if(data?.cardDoc?.due_date){
          let dateObj = new Date(date)
          dueDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`
-         document.getElementById("dueDateOption").value = dueDate
+         document.getElementById("dueDateOption").placeholder = dueDate
          console.log("Due Date Check Passed")
 
       } else{
