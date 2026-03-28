@@ -2,6 +2,9 @@
 
 let colIDBtn = "nil"
 let activeCardID = "nil"
+let draggedCard = null
+let orCol = "nil"
+let cardDID = "nil"
 
 async function loadPage(){
 
@@ -31,6 +34,7 @@ console.log(`Token: ${token}`)
 
 let colList = document.getElementById("cols")
 colList.innerHTML = ""
+data.columns.sort((a,b) => a.position - b.position)
 
 for (let col = 0; col<data.columns.length;col++){
 
@@ -60,6 +64,7 @@ createColModal()
 
 // load cards
 
+data.cards.sort((a,b) => a.position - b.position)
 for (let card = 0; card<data.cards.length; card++){
 
 
@@ -70,10 +75,13 @@ title.textContent = data.cards[card].title
 cardDiv.appendChild(title)
 let column = document.getElementById(data.cards[card].column)
 column.appendChild(cardDiv)
+cardDiv.draggable = "true"
+cardDiv.id = data.cards[card].card_id
 
 cardDiv.addEventListener("click", () => {
    loadCard(data.cards[card].card_id)
 } )
+
 
 }
 
@@ -93,6 +101,20 @@ allCols.forEach(col =>{
     })
     
     
+})
+
+document.querySelectorAll(".col").forEach(col => {
+   col.addEventListener("dragover", e => {
+      e.preventDefault();
+   })
+
+col.addEventListener("drop", async e => {
+if(draggedCard) {
+   col.appendChild(draggedCard)
+   await updateColPos(col)
+   draggedCard = null
+}
+})
 })
 
 
@@ -528,8 +550,87 @@ let dateBox = document.getElementById("dueDateOption")
             }
            });
             }
+
+
+            document.addEventListener("dragstart", e => {
+               if (e.target.classList.contains("card")) {
+                  draggedCard = e.target
+                  orCol = e.target.parentElement
+               }
+            })
+
+            document.addEventListener("dragend", async e => {
+               if (draggedCard){
+                  let newCol = draggedCard.parentElement
+                  
+                  if(orCol !== newCol){
+                    await updateColPos(newCol)
+                    loadPage()
+
+                  }
+
+                  orCol = null
+                  newCol = null
+               }
+            })
       
+ async function updateColPos(col) {
+   let cards = [...col.querySelectorAll(".card")]
+   let config = await fetch("../config/config.json")
+   config = await config.json()
+   const apiLink = config.apiLink
+   const token = localStorage.getItem("frames_token")
+  
+   for (let i = 0; i < cards.length; i++){
+      const card = cards[i]
+
+      
+
+      const response = await fetch(`${apiLink}/card/edit/${card.id}`, {
+         method: "PATCH",
+         headers: {
+             "Content-Type": "application/json",
+             "Authorization": `Bearer ${token}`,
+  
+         },
+  
+         body: JSON.stringify({
+            value: "position",
+            content: i
+         })
+  
+       })
+  
+
+       const r = await fetch(`${apiLink}/card/edit/${card.id}`, {
+         method: "PATCH",
+         headers: {
+             "Content-Type": "application/json",
+             "Authorization": `Bearer ${token}`,
+  
+         },
+  
+         body: JSON.stringify({
+            value: "column",
+            content: col.id
+         })
+  
+       })
+  
+  
+
+   }
+
+
+console.log(`Token: ${token}`)
+
+
+
+ }
  
+
+
+
  
 window.onload = () => {
    loadPage()
