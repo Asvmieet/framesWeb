@@ -413,7 +413,7 @@ console.log(cardTitle)
       function setUpDateBox(){
 let dateBox = document.getElementById("dueDateOption")
 
-      textBtn.addEventListener('keydown', e => {
+      dateBox.addEventListener('keydown', e => {
          if (dateBox === document.activeElement) {
            if (e.key === 'Enter') {
             let [m,d,y] = dateBox.value.split("/").map(Number)
