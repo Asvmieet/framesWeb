@@ -655,7 +655,7 @@ for (let c of cards) {
    return clox
 }
  
-document.getElementById("deleteCard").addEventListener("click", async e => {
+document.getElementById("deleteCard").addEventListener("click", async () => {
    let config = await fetch("../config/config.json")
    config = await config.json()
    const apiLink = config.apiLink
@@ -672,10 +672,7 @@ document.getElementById("deleteCard").addEventListener("click", async e => {
   
          },
   
-         body: JSON.stringify({
-            boardID,
-            updates
-         })
+  
   
        })
    
