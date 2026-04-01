@@ -655,7 +655,38 @@ for (let c of cards) {
    return clox
 }
  
+document.getElementById("deleteCard").addEventListener("click", async e => {
+   let config = await fetch("../config/config.json")
+   config = await config.json()
+   const apiLink = config.apiLink
+   const token = localStorage.getItem("frames_token")
+   const params = new URLSearchParams(window.location.search)
+   const boardID = params.get("id")
+      
 
+      const response = await fetch(`${apiLink}/card/delete/${boardID}/${activeCardID}`, {
+         method: "DELETE",
+         headers: {
+             "Content-Type": "application/json",
+             "Authorization": `Bearer ${token}`,
+  
+         },
+  
+         body: JSON.stringify({
+            boardID,
+            updates
+         })
+  
+       })
+   
+const data = await response.json()
+
+if (data.ok){
+   loadPage()
+} else {
+   console.log("Error deleting card.")
+}
+})
 
 
  
