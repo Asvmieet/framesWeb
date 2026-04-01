@@ -557,6 +557,7 @@ let dateBox = document.getElementById("dueDateOption")
             if (labelBox === document.activeElement) {
             if (e.key === 'Enter') {
             addLabel(labelBox.value)
+            labelBox.value = ""
             }
             }
            });
@@ -680,6 +681,8 @@ const data = await response.json()
 
 if (data.ok){
    loadPage()
+       document.getElementById("modalOverlayCardView").style.display = "none"
+       document.getElementById("createModalCardView").style.display = "none"
 } else {
    console.log("Error deleting card.")
 }
