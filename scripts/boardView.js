@@ -121,7 +121,7 @@ document.querySelectorAll(".col").forEach(col => {
 
 col.addEventListener("drop", async e => {
 if(draggedCard) {
-   col.appendChild(draggedCard)
+   // col.appendChild(draggedCard)
    await updateColPos(col)
    draggedCard = null
 }
