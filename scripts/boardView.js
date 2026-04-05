@@ -688,12 +688,144 @@ if (data.ok){
 }
 })
 
+function boardInfoAutoClose(){
+   const overlay = document.getElementById("modalOverlayBoardInfo")
+   overlay.addEventListener("click", (clickEvent) => {
+      if (clickEvent.target === overlay){
+            document.getElementById("modalOverlayBoardInfo").style.display = "none"
+            document.getElementById("createModalBoardInfo").style.display = "none"
+         
+      }
+   })
+}
 
+async function boardInfoOpen(){
+
+   const response = await fetch(`${apiLink}/boards/getPerms`, {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json",
+
+      },
+
+  })
+
+  const data = await response.json()
+  console.log(data)
+
+  if (data.ok){
+
+for (let v = 0; v<data.read.length; v++){
+  // <h4 class="permsOption">username</h4>
+
+   let lbl = document.createElement("h4")
+   lbl.className = "permsOption"
+   lbl.innerHTML = data.read[v]
+
+
+
+   const params = new URLSearchParams(window.location.search)
+const boardID = params.get("id")
+   lbl.addEventListener("click", async () => {
+      const response = await fetch(`${apiLink}/boards/deletePerms/${boardID}`, {
+         method: "PATCH",
+         headers: {
+             "Content-Type": "application/json",
+             "Authorization": `Bearer ${token}`,
+ 
+         },
+
+         body: JSON.stringify({
+           username: data.read[v]
+        
+
+       })
+ 
+     })
+ 
+     const data = await response.json()
+     console.log(data)
+     if(data.ok){
+      this.remove
+   }
+
+
+   })
+
+   let vPl = document.getElementById("vPLIST")
+   lbl.appendChild(vPl)
+}
+
+
+for (let v = 0; v<data.read.length; v++){
+   // <h4 class="permsOption">username</h4>
+ 
+    let lbl = document.createElement("h4")
+    lbl.className = "permsOption"
+    lbl.innerHTML = data.write[v]
+ 
+ 
+ 
+    const params = new URLSearchParams(window.location.search)
+ const boardID = params.get("id")
+    lbl.addEventListener("click", async () => {
+       const response = await fetch(`${apiLink}/boards/deletePerms/${boardID}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+  
+          },
+ 
+          body: JSON.stringify({
+            username: data.write[v]
+         
+ 
+        })
+  
+      })
+  
+      const data = await response.json()
+      console.log(data)
+
+      if(data.ok){
+         this.remove
+      }
+ 
+    })
+ 
+    let vPl = document.getElementById("vPLIST")
+    lbl.appendChild(vPl)
+ }
+
+
+
+   document.getElementById("modalOverlayBoardInfo").style.display = "flex"
+   document.getElementById("createModalBoardInfo").style.display = "block"
+  }
+
+
+}
+
+document.getElementById(boardName).addEventListener("click", () => {
+boardInfoOpen()
+})
+
+function setName() {
+   const params = new URLSearchParams(window.location.search)
+const name = params.get("n")
+document.getElementById(boardName).innerHTML = name
+
+}
  
 window.onload = () => {
    loadPage()
    setUpDateBox()
    setUpLabels()
+   setName()
+   
 
 }
+
+
 

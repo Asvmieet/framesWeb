@@ -21,7 +21,7 @@ function createBoard(boardTitle,perm,id){
     boardsList.appendChild(boardDiv)
 
     boardDiv.addEventListener("click", () => {
-        window.location.href = `boardView.html?id=${id}`
+        window.location.href = `boardView.html?id=${id}&n=${boardTitle}`
     })
 }
 
