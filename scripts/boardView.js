@@ -807,7 +807,7 @@ for (let v = 0; v<data.read.length; v++){
 
 }
 
-document.getElementById(boardName).addEventListener("click", () => {
+document.getElementById("boardName").addEventListener("click", () => {
 boardInfoOpen()
 })
 
