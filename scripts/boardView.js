@@ -700,7 +700,10 @@ function boardInfoAutoClose(){
 }
 
 async function boardInfoOpen(){
-
+   let config = await fetch("../config/config.json")
+   config = await config.json()
+   const apiLink = config.apiLink
+   const token = localStorage.getItem("frames_token")
    const response = await fetch(`${apiLink}/boards/getPerms`, {
       method: "GET",
       headers: {
@@ -723,7 +726,10 @@ for (let v = 0; v<data.read.length; v++){
    lbl.innerHTML = data.read[v]
 
 
-
+   let config = await fetch("../config/config.json")
+   config = await config.json()
+   const apiLink = config.apiLink
+   const token = localStorage.getItem("frames_token")
    const params = new URLSearchParams(window.location.search)
 const boardID = params.get("id")
    lbl.addEventListener("click", async () => {
@@ -814,7 +820,7 @@ boardInfoOpen()
 function setName() {
    const params = new URLSearchParams(window.location.search)
 const name = params.get("n")
-document.getElementById(boardName).innerHTML = name
+document.getElementById("boardName").innerHTML = name
 
 }
  
