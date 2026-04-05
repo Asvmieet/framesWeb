@@ -761,11 +761,11 @@ const boardID = params.get("id")
    })
 
    let vPl = document.getElementById("vPLIST")
-   lbl.appendChild(vPl)
+   vPl.appendChild(lbl)
 }
 
 
-for (let v = 0; v<data.read.length; v++){
+for (let v = 0; v<data.write.length; v++){
    // <h4 class="permsOption">username</h4>
  
     let lbl = document.createElement("h4")
@@ -802,8 +802,8 @@ for (let v = 0; v<data.read.length; v++){
  
     })
  
-    let vPl = document.getElementById("vPLIST")
-    lbl.appendChild(vPl)
+    let vPl = document.getElementById("ePLIST")
+    vPl.appendChild(lbl)
  }
 
 
