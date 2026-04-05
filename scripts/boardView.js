@@ -714,11 +714,22 @@ async function boardInfoOpen(){
       },
 
   })
+  document.getElementById("ePLIST").innerHTML = ""
+  document.getElementById("vPLIST").innerHTML = ""
+
 
   const data = await response.json()
   console.log(data)
 
   if (data.ok){
+
+let titleV = document.createElement("h2")
+titleV.innerHTML = "Viewers"
+document.getElementById("vPLIST").appendChild(titleV)
+
+let titleE = document.createElement("h2")
+titleE.innerHTML = "Editors"
+document.getElementById("ePLIST").appendChild(titleE)
 
 for (let v = 0; v<data.read.length; v++){
   // <h4 class="permsOption">username</h4>
