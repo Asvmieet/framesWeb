@@ -128,6 +128,22 @@ margin-bottom: 5px;
     padding-bottom: 15px;
 }
 
+.plist{
+    background-color: rgba(217, 217, 217, 0.67);
+    box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(13px);
+    border-radius: 15px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50%;
+    min-height: 80px;
+    padding-bottom: 15px;
+    margin-right: 5px;
+    max-height: 250px;
+    overflow-y: auto;
+}
 .createBoard{
     background: none !important;
     backdrop-filter: blur(13px);
@@ -183,6 +199,22 @@ margin-bottom: 5px;
     overflow-x: auto;
     overflow-y: hidden;
     
+}
+
+.permsList{
+    display: flex;
+    flex-wrap: nowrap;
+    border-radius: 15px;
+    background: transparent;
+    width: 100%;
+    max-width: 1400px;
+    min-height: 200px;
+    padding: 40px;
+    box-sizing: border-box;
+    align-items: flex-start;
+    gap: 15px;
+    overflow-x: auto;
+
 }
 
 
@@ -257,6 +289,30 @@ margin-bottom: 5px;
     max-width: 400px;
     border-radius: 15px;
 }
+
+
+.modalOverlayBoardInfo{
+    display: none; /* flex */
+    position: fixed;
+    inset: 0;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 80px;
+    z-index: 100;
+}
+
+.createModalBoardInfo{
+    display: none; /* block */
+    background-color: rgba(217, 217, 217, 0.);
+    box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(13px);
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    height: 70vh;
+}
+
 
 .card{
     background-color: rgba(217, 217, 217, 0.67);
@@ -408,3 +464,27 @@ input{
     border: none;
 }
 
+
+.next {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.permsOption{
+background-color: rgba(217, 217, 217, 0.67);
+box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.25);
+backdrop-filter: blur(13px);
+border-radius: 15px;
+width: 75%;
+height: 40px;
+border: none;
+box-sizing: border-box;
+font-family: 'Times New Roman', Times, serif;
+color: black;
+font-size: medium;
+margin-bottom: 5px;
+text-align: center;
+
+}
