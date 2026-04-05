@@ -704,7 +704,9 @@ async function boardInfoOpen(){
    config = await config.json()
    const apiLink = config.apiLink
    const token = localStorage.getItem("frames_token")
-   const response = await fetch(`${apiLink}/boards/getPerms`, {
+   const params = new URLSearchParams(window.location.search)
+   const boardID = params.get("id")
+   const response = await fetch(`${apiLink}/boards/getPerms?boardID=${boardID}`, {
       method: "GET",
       headers: {
           "Content-Type": "application/json",
