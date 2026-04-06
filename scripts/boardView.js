@@ -850,7 +850,6 @@ async function setUpChangeBoardName(){
       //
      
 
-  console.log(`Token: ${token}`)
   let config = await fetch("../config/config.json")
   config = await config.json()
   const apiLink = config.apiLink
