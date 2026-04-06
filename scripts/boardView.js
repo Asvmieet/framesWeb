@@ -737,11 +737,12 @@ console.log("Update perms res:", data)
          config = await config.json()
          const apiLink = config.apiLink
          const token = localStorage.getItem("frames_token")
-        
+         const params = new URLSearchParams(window.location.search)
+         const boardID = params.get("id")
       try{
             
       
-            const response = await fetch(`${apiLink}/card/posEdit`, {
+            const response = await fetch(`${apiLink}/column/posChange`, {
                method: "PATCH",
                headers: {
                    "Content-Type": "application/json",
