@@ -1107,7 +1107,7 @@ const boardID = params.get("id")
       const boardID = params.get("id")
          
    
-         const response = await fetch(`${apiLink}/card/delete/${boardID}`, {
+         const response = await fetch(`${apiLink}/boards/delete/${boardID}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
