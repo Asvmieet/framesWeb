@@ -1229,6 +1229,8 @@ const boardID = params.get("id")
    
    if (data.ok){
       loadPage()
+       document.getElementById("modalOverlayColManage").style.display = "none"
+   document.getElementById("colManagementModal").style.display = "none"
    } else {
       console.log("Error deleting card.")
    }
