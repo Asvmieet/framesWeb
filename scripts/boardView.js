@@ -6,6 +6,7 @@ let draggedCard = null
 let orCol = "nil"
 let cardDID = "nil"
 let anyRan = ""
+let isDrag = null
 
 async function loadPage(){
 
@@ -80,6 +81,7 @@ cardDiv.draggable = "true"
 cardDiv.id = cardData.card_id
 
 cardDiv.addEventListener("click", () => {
+  if(isDrag) return
    loadCard(cardData.card_id)
 } )
 
@@ -569,6 +571,7 @@ let dateBox = document.getElementById("dueDateOption")
                if (e.target.classList.contains("card")) {
                   draggedCard = e.target
                   orCol = e.target.parentElement
+                  isDrag = true
                      e.target.classList.add("drag")
                }
             })
@@ -584,6 +587,10 @@ let dateBox = document.getElementById("dueDateOption")
                   orCol = null
                   newCol = null
                   draggedCard = null
+
+                  setTimeout(() => {
+                     isDrag = false
+                  }, 50)
                }
             })
       
