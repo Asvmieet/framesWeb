@@ -819,7 +819,7 @@ for (let v = 0; v<data.write.length; v++){
     vPl.appendChild(lbl)
  }
 
-
+ boardInfoAutoClose()
 
    document.getElementById("modalOverlayBoardInfo").style.display = "flex"
    document.getElementById("createModalBoardInfo").style.display = "block"
