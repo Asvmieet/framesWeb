@@ -832,7 +832,7 @@ input2.className = "cardOptions"
 input2.id = "addEdit"
 input2.placeholder = "Add Editor"
 let vPl2 = document.getElementById("ePLIST")
-vPl2.appendChild(input)
+vPl2.appendChild(input2)
 addEditor()
  boardInfoAutoClose()
 
