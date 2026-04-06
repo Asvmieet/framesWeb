@@ -514,3 +514,31 @@ font-size: x-large;
     
     }
 
+
+
+    .addOption{
+        border-radius: 15px;
+    background: #2C4C6E;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    width: 85%;
+    height: 20px;
+    border: none;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgba(217, 217, 217, 0.67);;
+    font-size: medium;
+    margin-bottom: 5px;
+    text-align: center;
+
+    
+    }
+    
+    .addOption::placeholder{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgba(217, 217, 217, 0.67);;
+    font-size: medium;
+    margin-bottom: 5px;
+    text-align: center;
+    
+    }
+    

@@ -786,7 +786,7 @@ const boardID = params.get("id")
 //<input class="cardOptions" id="labelsOption" placeholder="Add">
 // create addOption
 let input = document.createElement("input")
-input.className = "cardOptions"
+input.className = "addOption"
 input.id = "addView"
 input.placeholder = "Add Viewer"
 let vPl = document.getElementById("vPLIST")
@@ -836,7 +836,7 @@ for (let v = 0; v<data.write.length; v++){
  }
 
  let input2 = document.createElement("input")
-input2.className = "cardOptions"
+input2.className = "addOption"
 input2.id = "addEdit"
 input2.placeholder = "Add Editor"
 let vPl2 = document.getElementById("ePLIST")
