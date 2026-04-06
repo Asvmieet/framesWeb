@@ -153,14 +153,14 @@ function createColModal(){
    overlay.addEventListener("click", (clickEvent) => {
       if (clickEvent.target === overlay){
  document.getElementById("modalOverlayColManage").style.display = "none"
-   document.getElementById("modalOverlayColManage").style.display = "none"
+   document.getElementById("colManagementModal").style.display = "none"
       }
    })
 }
 
  function manageColModalOpen(colID){
    document.getElementById("modalOverlayColManage").style.display = "flex"
-   document.getElementById("modalOverlayColManage").style.display = "block"
+   document.getElementById("colManagementModal").style.display = "block"
    activeCol = colID
    modalCloseAutoColManage()
 
