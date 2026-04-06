@@ -469,6 +469,7 @@ let dateBox = document.getElementById("dueDateOption")
 
 
             editDate(date)
+            dateBox.value = ""
             
          }
          }
