@@ -766,7 +766,7 @@ const boardID = params.get("id")
      const responseData = await response.json()
      console.log(responseData)
      if(responseData.ok){
-      lbl.remove
+      lbl.remove()
    }
 
 
@@ -810,7 +810,7 @@ for (let v = 0; v<data.write.length; v++){
       console.log(responseData)
 
       if(responseData.ok){
-         lbl.remove
+         lbl.remove()
       }
  
     })
@@ -838,6 +838,54 @@ const name = params.get("n")
 document.getElementById("boardName").innerHTML = name
 
 }
+
+async function setUpChangeBoardName(){
+   let labelBox = document.getElementById("cardTitleModal")
+                 
+   labelBox.addEventListener('keydown', async e => {
+   if (labelBox === document.activeElement) {
+   if (e.key === 'Enter') {
+
+
+      //
+     
+
+  console.log(`Token: ${token}`)
+  let config = await fetch("../config/config.json")
+  config = await config.json()
+  const apiLink = config.apiLink
+  const token = localStorage.getItem("frames_token")
+  const params = new URLSearchParams(window.location.search)
+const boardID = params.get("id")
+      const response = await fetch(`${apiLink}/boards/edit/${boardID}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+  
+          },
+
+          body: JSON.stringify({
+            value: "name",
+            content: labelBox.value,
+         
+
+        })
+  
+      })
+  
+      const data = await response.json()
+      console.log(data)
+      //
+
+      if (data.ok){
+      labelBox.value = ""
+      }
+   }
+   }
+  });
+   }
+
  
 window.onload = () => {
    loadPage()
