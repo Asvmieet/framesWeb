@@ -631,9 +631,10 @@ let dateBox = document.getElementById("dueDateOption")
                }
             }) 
 
-            document.addEventListener("dragend", e => {
+            document.addEventListener("dragend", async e => {
                if(draggedCol){
                if (e.target.classList.contains("col")) {
+                  await updateBoardCol()
                   draggedCol = null
                }
             }
