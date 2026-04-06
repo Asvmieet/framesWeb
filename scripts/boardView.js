@@ -8,6 +8,7 @@ let cardDID = "nil"
 let anyRan = ""
 let isDrag = false
 let activeCol = ""
+let draggedCol = null
 
 async function loadPage(){
 
@@ -47,7 +48,7 @@ colDiv.id = data.columns[col].column_id
 let colTitle = document.createElement("h2")
 colTitle.textContent = data.columns[col].title
 colDiv.appendChild(colTitle)
-
+colDiv.draggable = true
 colDiv.addEventListener("click", async (e) => {
    manageColModalOpen(data.columns[col].column_id, data.columns[col].title)
 })
@@ -622,6 +623,52 @@ let dateBox = document.getElementById("dueDateOption")
                   }, 50)
                }
             })
+
+
+            document.addEventListener("dragstart", e => {
+               if (e.target.classList.contains("col")) {
+                  draggedCol = e.target
+               }
+            }) 
+
+            document.addEventListener("dragend", e => {
+               if(draggedCol){
+               if (e.target.classList.contains("col")) {
+                  draggedCol = null
+               }
+            }
+            }) 
+
+         let colListDrag = document.getElementById("cols")
+
+         colListDrag.addEventListener("dragover", e => {
+            e.preventDefault()
+            if(!draggedCol) return
+
+            const afterCol = getLocationColDrag(colListDrag, e.clientX)
+            if(afterCol == null){
+               colListDrag.appendChild(draggedCol)
+            } else {
+               colListDrag.insertBefore(draggedCol,afterCol)
+            }
+         })
+
+
+         function getLocationColDrag(cont, x) {
+            let cols = [...cont.querySelectorAll(".col")].filter(c => c !== draggedCol)
+            let colx = {offset: Number.NEGATIVE_INFINITY, element: null};
+
+            for (let col of cols) {
+               const bx = col.getBoundingClientRect();
+               const offset = x - (bx.left + bx.width / 2)
+               if(offset < 0 && offset > colx.offset) {
+                  colx.offset = offset
+                  colx.element = col
+               }
+            }
+      return colx.element  
+         }
+
       
  async function updateColPos(col) {
    let cards = [...col.querySelectorAll(".card")]
@@ -672,6 +719,54 @@ console.log("Update perms res:", data)
 
 
 
+
+      async function updateBoardCol() {
+         let colList = document.getElementById("cols")
+         let cols = [...colList.querySelectorAll(".col")]
+         let updates = cols.map((col,i) => ({
+            column_id: col.id,
+            position: i
+         }))
+      
+
+      
+         if (updates.length === 0) return;
+      
+         let config = await fetch("../config/config.json")
+         config = await config.json()
+         const apiLink = config.apiLink
+         const token = localStorage.getItem("frames_token")
+        
+      try{
+            
+      
+            const response = await fetch(`${apiLink}/card/posEdit`, {
+               method: "PATCH",
+               headers: {
+                   "Content-Type": "application/json",
+                   "Authorization": `Bearer ${token}`,
+        
+               },
+        
+               body: JSON.stringify({
+                  boardID,
+                  updates
+               })
+        
+             })
+         
+      const data = await response.json()
+      console.log("Update perms res:", data)
+            } catch(e) {
+               console.log("Update perms failed:", e)
+            }
+            
+        
+        
+      
+            }
+      
+      
 
  
 
