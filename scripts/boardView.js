@@ -1098,7 +1098,37 @@ const boardID = params.get("id")
    }
  
 
+   document.getElementById("deleteBoard").addEventListener("click", async () => {
+      let config = await fetch("../config/config.json")
+      config = await config.json()
+      const apiLink = config.apiLink
+      const token = localStorage.getItem("frames_token")
+      const params = new URLSearchParams(window.location.search)
+      const boardID = params.get("id")
+         
+   
+         const response = await fetch(`${apiLink}/card/delete/${boardID}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+     
+            },
+     
+     
+     
+          })
+      
+   const data = await response.json()
+   
+   if (data.ok){
+      window.location.href = "./home.html"
 
+   } else {
+      console.log("Error deleting board.")
+   }
+   })
+   
 
 window.onload = () => {
    loadPage()
