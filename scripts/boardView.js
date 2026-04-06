@@ -6,7 +6,7 @@ let draggedCard = null
 let orCol = "nil"
 let cardDID = "nil"
 let anyRan = ""
-let isDrag = null
+let isDrag = false
 
 async function loadPage(){
 
@@ -81,7 +81,8 @@ cardDiv.draggable = "true"
 cardDiv.id = cardData.card_id
 
 cardDiv.addEventListener("click", () => {
-  if(isDrag) return
+  console.log("CARCD CLICKED", isDrag)
+   if(isDrag) return
    loadCard(cardData.card_id)
 } )
 
