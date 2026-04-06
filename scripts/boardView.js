@@ -879,6 +879,7 @@ const boardID = params.get("id")
 
       if (data.ok){
       labelBox.value = ""
+      window.location.href = "./home.js"
       }
    }
    }
