@@ -924,7 +924,7 @@ const boardID = params.get("id")
 
           body: JSON.stringify({
             type: "write",
-            content: labelBox.value,
+            username: labelBox.value,
          
 
         })
@@ -971,7 +971,7 @@ const boardID = params.get("id")
 
           body: JSON.stringify({
             type: "read",
-            content: labelBox.value,
+            username: labelBox.value,
          
 
         })
