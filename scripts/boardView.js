@@ -732,11 +732,11 @@ async function boardInfoOpen(){
 
   if (data.ok){
 
-let titleV = document.createElement("h2")
+let titleV = document.createElement("h4")
 titleV.innerHTML = "Viewers"
 document.getElementById("vPLIST").appendChild(titleV)
 
-let titleE = document.createElement("h2")
+let titleE = document.createElement("h4")
 titleE.innerHTML = "Editors"
 document.getElementById("ePLIST").appendChild(titleE)
 
