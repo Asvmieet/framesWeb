@@ -766,7 +766,7 @@ const boardID = params.get("id")
      const responseData = await response.json()
      console.log(responseData)
      if(responseData.ok){
-      this.remove
+      lbl.remove
    }
 
 
@@ -810,7 +810,7 @@ for (let v = 0; v<data.write.length; v++){
       console.log(responseData)
 
       if(responseData.ok){
-         this.remove
+         lbl.remove
       }
  
     })
