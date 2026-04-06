@@ -68,19 +68,19 @@ createColModal()
 data.cards.sort((a,b) => a.position - b.position)
 for (let card = 0; card<data.cards.length; card++){
 
-
+let cardData = data.cards[card]
 let cardDiv = document.createElement("div")
 cardDiv.className = "card"
 let title = document.createElement("h3")
-title.textContent = data.cards[card].title
+title.textContent = cardData.title
 cardDiv.appendChild(title)
-let column = document.getElementById(data.cards[card].column)
+let column = document.getElementById(cardData.column)
 column.appendChild(cardDiv)
 cardDiv.draggable = "true"
-cardDiv.id = data.cards[card].card_id
+cardDiv.id = cardData.card_id
 
 cardDiv.addEventListener("click", () => {
-   loadCard(data.cards[card].card_id)
+   loadCard(cardData.card_id)
 } )
 
 
