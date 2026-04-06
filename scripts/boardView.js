@@ -49,7 +49,7 @@ colTitle.textContent = data.columns[col].title
 colDiv.appendChild(colTitle)
 
 colDiv.addEventListener("click", async (e) => {
-   manageColModalOpen(data.columns[col].column_id)
+   manageColModalOpen(data.columns[col].column_id, data.columns[col].title)
 })
 
 colList.appendChild(colDiv)
@@ -158,10 +158,11 @@ function createColModal(){
    })
 }
 
- function manageColModalOpen(colID){
+ function manageColModalOpen(colID, colname){
    document.getElementById("modalOverlayColManage").style.display = "flex"
    document.getElementById("colManagementModal").style.display = "block"
    activeCol = colID
+   document.getElementById("manageColTitle").value = colname
    modalCloseAutoColManage()
 
 
@@ -886,7 +887,7 @@ function setName() {
    const params = new URLSearchParams(window.location.search)
 const name = params.get("n")
 document.getElementById("boardName").innerHTML = name
-document.getElementById("boardnameModal").placeholder = name
+document.getElementById("boardnameModal").value = name
 }
 
 async function setUpChangeBoardName(){
