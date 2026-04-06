@@ -836,11 +836,11 @@ function setName() {
    const params = new URLSearchParams(window.location.search)
 const name = params.get("n")
 document.getElementById("boardName").innerHTML = name
-
+document.getElementById("boardnameModal").placeholder = name
 }
 
 async function setUpChangeBoardName(){
-   let labelBox = document.getElementById("cardTitleModal")
+   let labelBox = document.getElementById("boardnameModal")
                  
    labelBox.addEventListener('keydown', async e => {
    if (labelBox === document.activeElement) {
@@ -891,6 +891,7 @@ window.onload = () => {
    loadPage()
    setUpDateBox()
    setUpLabels()
+   setUpChangeBoardName()
    setName()
    
 
