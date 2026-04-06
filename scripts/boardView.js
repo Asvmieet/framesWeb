@@ -373,7 +373,7 @@ console.log(cardTitle)
       }
 
 
-      document.getElementById("cardTitleModal").innerHTML = cardTitle_d
+      document.getElementById("cardTitleModal").value = cardTitle_d
       document.getElementById("cardDiscModal").value = cardDesc
 
        let Ll =  document.getElementById("labelsList")
@@ -1000,13 +1000,113 @@ const boardID = params.get("id")
          }
         });
    }
+
+
+   async function setDesc() {
+      let labelBox = document.getElementById("cardDiscModal")
+      labelBox.addEventListener('keydown', async e => {
+         if (labelBox === document.activeElement) {
+         if (e.key === 'Enter') {
+
+//
+let config = await fetch("../config/config.json")
+  config = await config.json()
+  const apiLink = config.apiLink
+  const token = localStorage.getItem("frames_token")
+  const params = new URLSearchParams(window.location.search)
+const boardID = params.get("id")
+      const response = await fetch(`${apiLink}/card/edit/${activeCardID}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+  
+          },
+
+          body: JSON.stringify({
+            value: "description",
+            content: labelBox.value,
+         
+
+        })
+  
+      })
+
+      
+  
+      const data = await response.json()
+      console.log(data)
+
+      if(data.ok){
+console.log("Card Updated!")
+      } 
+//
+
+
+         }
+         }
+        });
+   }
  
+
+   async function setTitle() {
+      let labelBox = document.getElementById("cardTitleModal")
+      labelBox.addEventListener('keydown', async e => {
+         if (labelBox === document.activeElement) {
+         if (e.key === 'Enter') {
+
+//
+let config = await fetch("../config/config.json")
+  config = await config.json()
+  const apiLink = config.apiLink
+  const token = localStorage.getItem("frames_token")
+  const params = new URLSearchParams(window.location.search)
+const boardID = params.get("id")
+      const response = await fetch(`${apiLink}/card/edit/${activeCardID}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+  
+          },
+
+          body: JSON.stringify({
+            value: "title",
+            content: labelBox.value,
+         
+
+        })
+  
+      })
+
+      
+  
+      const data = await response.json()
+      console.log(data)
+
+      if(data.ok){
+        loadPage()
+        loadCard(activeCardID)
+      } 
+//
+
+
+         }
+         }
+        });
+   }
+ 
+
+
+
 window.onload = () => {
    loadPage()
    setUpDateBox()
    setUpLabels()
    setUpChangeBoardName()
    setName()
+   setTitle()
+   setDesc()
    
 
 }
