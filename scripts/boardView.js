@@ -756,7 +756,7 @@ const boardID = params.get("id")
          },
 
          body: JSON.stringify({
-           username: data.read[v]
+           username: data.read[v].trim()
         
 
        })
@@ -799,7 +799,7 @@ for (let v = 0; v<data.write.length; v++){
           },
  
           body: JSON.stringify({
-            username: data.write[v]
+            username: data.write[v].trim()
          
  
         })
