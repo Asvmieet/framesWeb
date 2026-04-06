@@ -5,6 +5,7 @@ let activeCardID = "nil"
 let draggedCard = null
 let orCol = "nil"
 let cardDID = "nil"
+let anyRan = ""
 
 async function loadPage(){
 
@@ -762,9 +763,9 @@ const boardID = params.get("id")
  
      })
  
-     const data = await response.json()
-     console.log(data)
-     if(data.ok){
+     const responseData = await response.json()
+     console.log(responseData)
+     if(responseData.ok){
       this.remove
    }
 
@@ -788,6 +789,7 @@ for (let v = 0; v<data.write.length; v++){
     const params = new URLSearchParams(window.location.search)
  const boardID = params.get("id")
     lbl.addEventListener("click", async () => {
+
        const response = await fetch(`${apiLink}/boards/deletePerms/${boardID}`, {
           method: "PATCH",
           headers: {
@@ -804,10 +806,10 @@ for (let v = 0; v<data.write.length; v++){
   
       })
   
-      const data = await response.json()
-      console.log(data)
+      const responseData = await response.json()
+      console.log(responseData)
 
-      if(data.ok){
+      if(responseData.ok){
          this.remove
       }
  
