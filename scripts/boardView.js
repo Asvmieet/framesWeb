@@ -7,6 +7,7 @@ let orCol = "nil"
 let cardDID = "nil"
 let anyRan = ""
 let isDrag = false
+let activeCol = ""
 
 async function loadPage(){
 
@@ -46,6 +47,10 @@ colDiv.id = data.columns[col].column_id
 let colTitle = document.createElement("h2")
 colTitle.textContent = data.columns[col].title
 colDiv.appendChild(colTitle)
+
+colDiv.addEventListener("click", async (e) => {
+   manageColModalOpen(data.columns[col].column_id)
+})
 
 colList.appendChild(colDiv)
 
@@ -142,6 +147,27 @@ function createColModal(){
 
 
  }
+
+ function modalCloseAutoColManage(){
+   const overlay = document.getElementById("modalOverlayColManage")
+   overlay.addEventListener("click", (clickEvent) => {
+      if (clickEvent.target === overlay){
+ document.getElementById("modalOverlayColManage").style.display = "none"
+   document.getElementById("modalOverlayColManage").style.display = "none"
+      }
+   })
+}
+
+ function manageColModalOpen(colID){
+   document.getElementById("modalOverlayColManage").style.display = "flex"
+   document.getElementById("modalOverlayColManage").style.display = "block"
+   activeCol = colID
+   modalCloseAutoColManage()
+
+
+}
+
+
 
 
 
@@ -910,6 +936,52 @@ const boardID = params.get("id")
   });
    }
 
+   async function setUpColManage(){
+      let labelBox = document.getElementById("manageColTitle")
+                    
+      labelBox.addEventListener('keydown', async e => {
+      if (labelBox === document.activeElement) {
+      if (e.key === 'Enter') {
+   
+   
+         //
+        
+   
+     let config = await fetch("../config/config.json")
+     config = await config.json()
+     const apiLink = config.apiLink
+     const token = localStorage.getItem("frames_token")
+     const params = new URLSearchParams(window.location.search)
+   const boardID = params.get("id")
+         const response = await fetch(`${apiLink}/column/edit/${activeCol}`, {
+             method: "PATCH",
+             headers: {
+                 "Content-Type": "application/json",
+                 "Authorization": `Bearer ${token}`,
+     
+             },
+   
+             body: JSON.stringify({
+               value: "title",
+               content: labelBox.value,
+            
+   
+           })
+     
+         })
+     
+         const data = await response.json()
+         console.log(data)
+         //
+   
+         if (data.ok){
+            loadPage()
+         }
+      }
+      }
+     });
+      }
+
    async function addEditor() {
       let labelBox = document.getElementById("addEdit")
       labelBox.addEventListener('keydown', async e => {
@@ -1130,6 +1202,37 @@ const boardID = params.get("id")
    })
    
 
+
+   document.getElementById("deleteColBtn").addEventListener("click", async () => {
+      let config = await fetch("../config/config.json")
+      config = await config.json()
+      const apiLink = config.apiLink
+      const token = localStorage.getItem("frames_token")
+      const params = new URLSearchParams(window.location.search)
+      const boardID = params.get("id")
+         
+   
+         const response = await fetch(`${apiLink}/column/delete/${boardID}/${activeCol}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+     
+            },
+     
+     
+     
+          })
+      
+   const data = await response.json()
+   
+   if (data.ok){
+      loadPage()
+   } else {
+      console.log("Error deleting card.")
+   }
+   })
+   
 window.onload = () => {
    loadPage()
    setUpDateBox()
@@ -1138,7 +1241,7 @@ window.onload = () => {
    setName()
    setTitle()
    setDesc()
-   
+   setUpColManage()
 
 }
 
