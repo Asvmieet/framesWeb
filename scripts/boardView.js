@@ -775,7 +775,15 @@ const boardID = params.get("id")
    let vPl = document.getElementById("vPLIST")
    vPl.appendChild(lbl)
 }
-
+//<input class="cardOptions" id="labelsOption" placeholder="Add">
+// create addOption
+let input = document.createElement("input")
+input.className = "cardOptions"
+input.id = "addView"
+input.placeholder = "Add Viewer"
+let vPl = document.getElementById("vPLIST")
+vPl.appendChild(input)
+addViewer()
 
 for (let v = 0; v<data.write.length; v++){
    // <h4 class="permsOption">username</h4>
@@ -819,6 +827,13 @@ for (let v = 0; v<data.write.length; v++){
     vPl.appendChild(lbl)
  }
 
+ let input2 = document.createElement("input")
+input2.className = "cardOptions"
+input2.id = "addEdit"
+input2.placeholder = "Add Editor"
+let vPl2 = document.getElementById("ePLIST")
+vPl2.appendChild(input)
+addEditor()
  boardInfoAutoClose()
 
    document.getElementById("modalOverlayBoardInfo").style.display = "flex"
@@ -886,6 +901,97 @@ const boardID = params.get("id")
   });
    }
 
+   async function addEditor() {
+      let labelBox = document.getElementById("addEdit")
+      labelBox.addEventListener('keydown', async e => {
+         if (labelBox === document.activeElement) {
+         if (e.key === 'Enter') {
+
+//
+let config = await fetch("../config/config.json")
+  config = await config.json()
+  const apiLink = config.apiLink
+  const token = localStorage.getItem("frames_token")
+  const params = new URLSearchParams(window.location.search)
+const boardID = params.get("id")
+      const response = await fetch(`${apiLink}/boards/permissions/${boardID}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+  
+          },
+
+          body: JSON.stringify({
+            type: "write",
+            content: labelBox.value,
+         
+
+        })
+  
+      })
+  
+      const data = await response.json()
+      console.log(data)
+
+      if(data.ok){
+          document.getElementById("modalOverlayBoardInfo").style.display = "none"
+            document.getElementById("createModalBoardInfo").style.display = "none"
+      } 
+//
+
+
+         }
+         }
+        });
+   }
+ 
+
+
+   async function addViewer() {
+      let labelBox = document.getElementById("addView")
+      labelBox.addEventListener('keydown', async e => {
+         if (labelBox === document.activeElement) {
+         if (e.key === 'Enter') {
+
+//
+let config = await fetch("../config/config.json")
+  config = await config.json()
+  const apiLink = config.apiLink
+  const token = localStorage.getItem("frames_token")
+  const params = new URLSearchParams(window.location.search)
+const boardID = params.get("id")
+      const response = await fetch(`${apiLink}/boards/permissions/${boardID}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+  
+          },
+
+          body: JSON.stringify({
+            type: "read",
+            content: labelBox.value,
+         
+
+        })
+  
+      })
+  
+      const data = await response.json()
+      console.log(data)
+
+      if(data.ok){
+          document.getElementById("modalOverlayBoardInfo").style.display = "none"
+            document.getElementById("createModalBoardInfo").style.display = "none"
+      } 
+//
+
+
+         }
+         }
+        });
+   }
  
 window.onload = () => {
    loadPage()
