@@ -50,8 +50,8 @@ let colTitle = document.createElement("h2")
 colTitle.textContent = data.columns[col].title
 colDiv.appendChild(colTitle)
 colDiv.draggable = true
-colDiv.addEventListener("click", async (e) => {
-   e.stopPropagation()
+colTitle.addEventListener("click", async (e) => {
+
    manageColModalOpen(data.columns[col].column_id, data.columns[col].title)
 })
 
@@ -68,6 +68,8 @@ createBtn.innerText = "Create Column"
 colList.appendChild(createBtn)
 
 createBtn.addEventListener("click", () => {
+   e.stopPropagation()
+   if(isDrag) return;
 createColModal()
 
 })
