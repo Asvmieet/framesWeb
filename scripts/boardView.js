@@ -161,7 +161,7 @@ function createColModal(){
 }
 
  function manageColModalOpen(colID, colname){
-   setTimeout(() => {}, 200)
+   setTimeout(() => {}, 2000)
    if(cardViewOpen) return;
    document.getElementById("modalOverlayColManage").style.display = "flex"
    document.getElementById("colManagementModal").style.display = "block"
