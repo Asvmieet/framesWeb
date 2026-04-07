@@ -178,7 +178,8 @@ function createCardModal(colID){
 
     document.getElementById("modalOverlayCard").style.display = "flex"
     document.getElementById("createModalCard").style.display = "block"
-
+       document.getElementById("modalOverlayColManage").style.display = "none"
+   document.getElementById("colManagementModal").style.display = "none"
     modalCloseAutoCardCreate()
  }
 
