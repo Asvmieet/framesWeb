@@ -51,6 +51,7 @@ colTitle.textContent = data.columns[col].title
 colDiv.appendChild(colTitle)
 colDiv.draggable = true
 colDiv.addEventListener("click", async (e) => {
+   e.stopPropagation()
    manageColModalOpen(data.columns[col].column_id, data.columns[col].title)
 })
 
