@@ -27,7 +27,7 @@ async function register() {
         if (data.token) {
             localStorage.setItem("frames_token", data.token)
         }
-        window.location.href = "./index.html"
+        window.location.href = "../index.html"
 
         return true;
     } else {
