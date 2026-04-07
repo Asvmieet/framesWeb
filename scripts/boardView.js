@@ -160,7 +160,7 @@ function createColModal(){
    })
 }
 
- function manageColModalOpen(colID, colname){
+ async function manageColModalOpen(colID, colname){
    setTimeout(() => {}, 2000)
    if(cardViewOpen) return;
    document.getElementById("modalOverlayColManage").style.display = "flex"
