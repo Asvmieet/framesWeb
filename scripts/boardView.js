@@ -9,6 +9,7 @@ let anyRan = ""
 let isDrag = false
 let activeCol = ""
 let draggedCol = null
+let cardViewOpen = false
 
 async function loadPage(){
 
@@ -160,6 +161,8 @@ function createColModal(){
 }
 
  function manageColModalOpen(colID, colname){
+   setTimeout(() => {}, 200)
+   if(cardViewOpen) return;
    document.getElementById("modalOverlayColManage").style.display = "flex"
    document.getElementById("colManagementModal").style.display = "block"
    activeCol = colID
@@ -175,7 +178,7 @@ function createColModal(){
 
 function createCardModal(colID){
    colIDBtn = colID
-
+   cardViewOpen = true
     document.getElementById("modalOverlayCard").style.display = "flex"
     document.getElementById("createModalCard").style.display = "block"
    
@@ -189,6 +192,7 @@ function createCardModal(colID){
  }
 
  function closeModalCardCreate(){
+   cardViewOpen = false
     document.getElementById("modalOverlayCard").style.display = "none"
     document.getElementById("createModalCard").style.display = "none"
  }
