@@ -319,7 +319,9 @@ console.log(cardTitle)
       
               loadPage()
               closeModalCol()
+              document.getElementById("COLname").value = ""
               return true;
+
           } else {
               console.log("Create column failed.")
               return false;
