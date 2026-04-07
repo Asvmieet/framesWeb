@@ -67,9 +67,8 @@ createBtn.innerText = "Create Column"
 
 colList.appendChild(createBtn)
 
-createBtn.addEventListener("click", () => {
-   e.stopPropagation()
-   if(isDrag) return;
+createBtn.addEventListener("click", (e) => {
+  
 createColModal()
 
 })
