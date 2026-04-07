@@ -182,7 +182,6 @@ function createCardModal(colID){
    
     modalCloseAutoCardCreate()
     setTimeout(() => {
-      window.location.href = "./pages/home.html"
 
      document.getElementById("modalOverlayColManage").style.display = "none"
    document.getElementById("colManagementModal").style.display = "none"
