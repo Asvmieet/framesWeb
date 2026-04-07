@@ -28,7 +28,7 @@ async function login() {
         setTimeout(() => {
             window.location.href = "./pages/home.html"
 
-        }, 5000)
+        }, 2000)
         return true;
     } else {
         console.log("User login failed")

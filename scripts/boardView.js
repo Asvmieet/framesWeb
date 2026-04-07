@@ -178,9 +178,15 @@ function createCardModal(colID){
 
     document.getElementById("modalOverlayCard").style.display = "flex"
     document.getElementById("createModalCard").style.display = "block"
-       document.getElementById("modalOverlayColManage").style.display = "none"
-   document.getElementById("colManagementModal").style.display = "none"
+   
+   
     modalCloseAutoCardCreate()
+    setTimeout(() => {
+      window.location.href = "./pages/home.html"
+
+     document.getElementById("modalOverlayColManage").style.display = "none"
+   document.getElementById("colManagementModal").style.display = "none"
+}, 200)
  }
 
  function closeModalCardCreate(){
